@@ -19,7 +19,7 @@ public class VendorController {
     }
 
     @GetMapping("/new")
-    public String creationForm(Model model) {
+    public String vendorCreationForm(Model model) {
         model.addAttribute("vendor", new VendorCreationRequest());
         return "vendor/createForm";
     }
@@ -31,4 +31,8 @@ public class VendorController {
         return "index.html";
     }
 
+    @GetMapping("/company/new")
+    public String companyCreationForm(Model model) {
+        
+    }
 }

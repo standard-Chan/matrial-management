@@ -1,10 +1,12 @@
 package com.springFramework.mm.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Entity
+@Builder
 public class VendorCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
