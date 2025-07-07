@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>구매조직 정보</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>구매조직별 정보</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>구매조직</th>
+        <th>구매그룹</th>
+        <th>통화</th>
+        <th>세금코드</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${purchasingList}">
+        <td th:text="${p.purchasingOrgCode}">1000</td>
+        <td th:text="${p.purchasingGroupCode}">101</td>
+        <td th:text="${p.currency}">KRW</td>
+        <td th:text="${p.taxCode}">V1</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

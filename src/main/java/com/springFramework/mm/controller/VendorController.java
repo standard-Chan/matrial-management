@@ -63,6 +63,12 @@ public class VendorController {
         return "vendor/createPurchasingForm";
     }
 
+    @GetMapping("purchasing")
+    public String getPurchasingList(Model model) {
+        model.addAttribute("purchasingList", vendorService.getAllPurchasing());
+        return "vendor/purchasingList";
+    }
+
     @PostMapping("/purchasing")
     public String createPurchasing(PurchasingCreationRequest request) {
         vendorService.createVendorPurchasing(request);

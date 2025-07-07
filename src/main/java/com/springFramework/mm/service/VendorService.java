@@ -2,6 +2,7 @@ package com.springFramework.mm.service;
 
 import com.springFramework.mm.domain.Vendor;
 import com.springFramework.mm.domain.VendorCompany;
+import com.springFramework.mm.domain.VendorPurchasing;
 import com.springFramework.mm.dto.vendor.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
 import com.springFramework.mm.dto.vendor.PurchasingCreationRequest;
@@ -45,6 +46,10 @@ public class VendorService {
 
     public List<VendorCompany> getAllCompanies() {
         return companyRepository.findAll();
+    }
+
+    public List<VendorPurchasing> getAllPurchasing() {
+        return purchasingRepository.findAll();
     }
 
 }
