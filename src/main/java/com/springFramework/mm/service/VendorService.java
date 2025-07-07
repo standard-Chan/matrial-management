@@ -28,28 +28,8 @@ public class VendorService {
         vendorRepository.save(request.toEntity());
     }
 
-    public void createVendorCompany(CompanyCreationRequest request) {
-        Vendor vendor = vendorRepository.getVendorById(request.getVendorId())
-                        .orElseThrow(() -> new EntityNotFoundException());
-        companyRepository.save(request.toEntity(vendor));
-    }
-
-    public void createVendorPurchasing(PurchasingCreationRequest request) {
-        Vendor vendor = vendorRepository.getVendorById(request.getVendorId())
-                        .orElseThrow(() -> new EntityNotFoundException());
-        purchasingRepository.save(request.toEntity(vendor));
-    }
-
     public List<Vendor> getAllVendors() {
         return vendorRepository.findAll();
-    }
-
-    public List<VendorCompany> getAllCompanies() {
-        return companyRepository.findAll();
-    }
-
-    public List<VendorPurchasing> getAllPurchasing() {
-        return purchasingRepository.findAll();
     }
 
 }

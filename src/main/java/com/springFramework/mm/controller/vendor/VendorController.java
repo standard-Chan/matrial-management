@@ -1,4 +1,4 @@
-package com.springFramework.mm.controller;
+package com.springFramework.mm.controller.vendor;
 
 import com.springFramework.mm.dto.vendor.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
@@ -36,44 +36,4 @@ public class VendorController {
         vendorService.createVendor(request);
         return "index.html";
     }
-
-
-    @GetMapping("/company/new")
-    public String companyCreationForm(Model model) {
-        model.addAttribute("company", new CompanyCreationRequest());
-        return "vendor/createCompanyForm";
-    }
-
-    @GetMapping("/company")
-    public String getCompanyList(Model model) {
-        model.addAttribute("companies", vendorService.getAllCompanies());
-        return "/vendor/companyList";
-    }
-
-    @PostMapping("/company")
-    public String createCompany(CompanyCreationRequest request) {
-        vendorService.createVendorCompany(request);
-        return "index.html";
-    }
-
-
-    @GetMapping("/purchasing/new")
-    public String purchasingCreationForm(Model model) {
-        model.addAttribute("purchasing", new PurchasingCreationRequest());
-        return "vendor/createPurchasingForm";
-    }
-
-    @GetMapping("purchasing")
-    public String getPurchasingList(Model model) {
-        model.addAttribute("purchasingList", vendorService.getAllPurchasing());
-        return "vendor/purchasingList";
-    }
-
-    @PostMapping("/purchasing")
-    public String createPurchasing(PurchasingCreationRequest request) {
-        vendorService.createVendorPurchasing(request);
-        return "index.html";
-    }
-
-
 }

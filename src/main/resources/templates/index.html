@@ -1,7 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head><title>메인페이지</title></head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>구매처 관리 시스템</title>
+    <meta charset="UTF-8">
+</head>
 <body>
-<h1>메인</h1>
+<h1>구매처 관리 시스템</h1>
+
+<h2>등록</h2>
+<ul>
+    <li><a th:href="@{/vendors/new}">구매처 등록</a></li>
+    <li><a th:href="@{/vendor-companies/new}">회사 정보 등록</a></li>
+    <li><a th:href="@{/vendor-purchasings/new}">구매 정보 등록</a></li>
+</ul>
+
+<h2>조회</h2>
+<ul>
+    <li><a th:href="@{/vendors}">구매처 목록</a></li>
+    <li><a th:href="@{/vendor-companies}">회사 정보 목록</a></li>
+    <li><a th:href="@{/vendor-purchasings}">구매 정보 목록</a></li>
+</ul>
 </body>
 </html>
