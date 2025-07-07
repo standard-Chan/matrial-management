@@ -1,4 +1,4 @@
-package com.springFramework.mm.dto;
+package com.springFramework.mm.dto.vendor;
 
 import com.springFramework.mm.domain.Vendor;
 import lombok.*;
@@ -6,6 +6,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class VendorCreationRequest {
     private String name;
     private String countryCode;

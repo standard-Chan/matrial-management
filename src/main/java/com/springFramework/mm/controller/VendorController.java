@@ -1,6 +1,6 @@
 package com.springFramework.mm.controller;
 
-import com.springFramework.mm.dto.VendorCreationRequest;
+import com.springFramework.mm.dto.vendor.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
 import com.springFramework.mm.dto.vendor.PurchasingCreationRequest;
 import com.springFramework.mm.service.VendorService;
@@ -25,11 +25,18 @@ public class VendorController {
         return "vendor/createForm";
     }
 
+    @GetMapping()
+    public String getVendors(Model model) {
+        model.addAttribute("vendors", vendorService.getAllVendors());
+        return "/vendor/vendorList";
+    }
+
     @PostMapping()
     public String createVendor(VendorCreationRequest request) {
         vendorService.createVendor(request);
         return "index.html";
     }
+
 
     @GetMapping("/company/new")
     public String companyCreationForm(Model model) {
@@ -54,4 +61,6 @@ public class VendorController {
         vendorService.createVendorPurchasing(request);
         return "index.html";
     }
+
+
 }
