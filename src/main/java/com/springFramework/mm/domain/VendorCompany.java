@@ -1,7 +1,9 @@
 package com.springFramework.mm.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 public class VendorCompany {
     @Id
