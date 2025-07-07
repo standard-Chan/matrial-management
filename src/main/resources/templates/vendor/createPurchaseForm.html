@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>구매 정보 등록</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>구매 정보 등록</h1>
+
+<form th:action="@{/vendor-purchase}" th:object="${purchase}" method="post">
+    <div>
+        <label>구매처 번호:</label>
+        <input type="text" th:field="*{vendorCode}" required />
+    </div>
+    <div>
+        <label>구매조직 코드:</label>
+        <input type="text" th:field="*{purchasingOrgCode}" required />
+    </div>
+    <div>
+        <label>구매그룹 코드:</label>
+        <input type="text" th:field="*{purchasingGroupCode}" required />
+    </div>
+    <div>
+        <label>통화:</label>
+        <input type="text" th:field="*{currency}" placeholder="예: KRW" />
+    </div>
+    <div>
+        <label>세금 코드:</label>
+        <select th:field="*{taxCode}">
+            <option value="">-- 선택 --</option>
+            <option value="V1">매입일반10%</option>
+            <option value="V2">매입계산0%</option>
+            <option value="V3">매입영세0%</option>
+            <option value="V4">매입불공제</option>
+            <option value="V5">매입고정자산</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">등록</button>
+    </div>
+</form>
+
+</body>
+</html>

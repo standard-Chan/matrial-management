@@ -5,12 +5,22 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 @Getter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(     // 제약조건 생성
+        name = "vendor_company",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_vendor_companycode",
+                        columnNames = {"vendor_id", "company_code"}
+                )
+        }
+)
 public class VendorCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +30,7 @@ public class VendorCompany {
     @JoinColumn(name = "vendor_id")
     private Vendor vendor; // 구매처 코드
 
+    @Column(unique = true)
     private String companyCode; // 회사 코드
 
     private String accountCode; // 계정 코드
