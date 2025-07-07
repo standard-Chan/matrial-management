@@ -1,6 +1,5 @@
 package com.springFramework.mm.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
