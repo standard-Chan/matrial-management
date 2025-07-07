@@ -8,10 +8,10 @@
 
 <h1>회사 정보 등록</h1>
 
-<form th:action="@{/vendor-company}" th:object="${company}" method="post">
+<form th:action="@{/vendors/company}" th:object="${company}" method="post">
     <div>
         <label>구매처 번호:</label>
-        <input type="text" th:field="*{vendorCode}" required />
+        <input type="text" th:field="*{vendorId}" required />
     </div>
     <div>
         <label>회사 코드:</label>
