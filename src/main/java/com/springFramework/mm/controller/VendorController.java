@@ -26,7 +26,7 @@ public class VendorController {
     }
 
     @GetMapping()
-    public String getVendors(Model model) {
+    public String getVendorList(Model model) {
         model.addAttribute("vendors", vendorService.getAllVendors());
         return "/vendor/vendorList";
     }
@@ -44,11 +44,18 @@ public class VendorController {
         return "vendor/createCompanyForm";
     }
 
+    @GetMapping("/company")
+    public String getCompanyList(Model model) {
+        model.addAttribute("companies", vendorService.getAllCompanies());
+        return "/vendor/companyList";
+    }
+
     @PostMapping("/company")
     public String createCompany(CompanyCreationRequest request) {
         vendorService.createVendorCompany(request);
         return "index.html";
     }
+
 
     @GetMapping("/purchasing/new")
     public String purchasingCreationForm(Model model) {

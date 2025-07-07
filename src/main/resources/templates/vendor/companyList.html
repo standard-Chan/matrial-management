@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>구매처 회사코드 정보</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>회사 코드별 정보</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>회사코드</th>
+        <th>계정</th>
+        <th>지급조건</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="company : ${companies}">
+        <td th:text="${company.companyCode}">1000000000</td>
+        <td th:text="${company.accountCode}">2100001010</td>
+        <td th:text="${company.paymentTermCode}">M001</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
