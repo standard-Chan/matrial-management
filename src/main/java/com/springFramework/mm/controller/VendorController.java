@@ -1,7 +1,7 @@
 package com.springFramework.mm.controller;
 
-import com.springFramework.mm.domain.Vendor;
 import com.springFramework.mm.dto.VendorCreationRequest;
+import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
 import com.springFramework.mm.service.VendorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +33,12 @@ public class VendorController {
 
     @GetMapping("/company/new")
     public String companyCreationForm(Model model) {
-        
+        model.addAttribute(new CompanyCreationRequest());
+        return "/vendor/createCompanyForm";
+    }
+
+    @PostMapping("/company")
+    public void createCompany(CompanyCreationRequest request) {
+
     }
 }

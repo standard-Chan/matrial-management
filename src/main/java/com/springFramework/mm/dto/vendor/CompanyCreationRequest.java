@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class companyCreationRequest {
+public class CompanyCreationRequest {
+    private Long vendorCode;
     private String companyCode;
     private String accountCode;
     private String paymentTermCode;

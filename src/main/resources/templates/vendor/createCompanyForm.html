@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회사 정보 등록</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>회사 정보 등록</h1>
+
+<form th:action="@{/vendor-company}" th:object="${company}" method="post">
+    <div>
+        <label>구매처 번호:</label>
+        <input type="text" th:field="*{vendorCode}" required />
+    </div>
+    <div>
+        <label>회사 코드:</label>
+        <input type="text" th:field="*{companyCode}" required />
+    </div>
+    <div>
+        <label>계정 코드:</label>
+        <select th:field="*{accountCode}">
+            <option value="">-- 선택 --</option>
+            <option value="2100001010">외상매입금_국내</option>
+            <option value="2100001020">외상매입금_수입</option>
+            <option value="2100001030">외상매입금_기타</option>
+            <option value="2100001040">지급어음</option>
+            <option value="2100002010">미지급금_국내</option>
+            <option value="2100002020">미지급금_외화</option>
+            <option value="2100002030">미지급금_법인카드</option>
+            <option value="2100003010">미지급비용_지급이자</option>
+            <option value="2100003020">미지급비용_급여</option>
+            <option value="2100003030">미지급비용_퇴직금</option>
+            <option value="2100003040">미지급비용_상여급</option>
+            <option value="2100003050">미지급비용_기타</option>
+            <option value="2100004010">미지급배당금</option>
+            <option value="2100005010">미지급법인세</option>
+        </select>
+    </div>
+    <div>
+        <label>지급 조건:</label>
+        <select th:field="*{paymentTermCode}">
+            <option value="">-- 선택 --</option>
+            <option value="M001">당월10일지급</option>
+            <option value="M002">당월25일지급</option>
+            <option value="M003">익월10일지급</option>
+            <option value="M004">익월25일지급</option>
+            <option value="M005">익익월10일지급</option>
+            <option value="M006">익익월25일지급</option>
+            <option value="P010">10일이내지급</option>
+            <option value="P015">15일이내지급</option>
+            <option value="P020">20일이내지급</option>
+            <option value="P030">30일이내지급</option>
+            <option value="P060">60일이내지급</option>
+            <option value="P090">90일이내지급</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">등록</button>
+    </div>
+</form>
+
+</body>
+</html>

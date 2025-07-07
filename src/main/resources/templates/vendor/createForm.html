@@ -4,7 +4,6 @@
 <body>
 <h1>구매처 등록</h1>
 <form th:action="@{/vendors}" th:object="${vendor}" method="post">
-    <label>구매처번호: <input th:field="*{vendorCode}" /></label><br/>
     <label>구매처명: <input th:field="*{name}" /></label><br/>
     <label>국가코드: <input th:field="*{countryCode}" /></label><br/>
     <label>구매처그룹: <input th:field="*{vendorGroupCode}" /></label><br/>

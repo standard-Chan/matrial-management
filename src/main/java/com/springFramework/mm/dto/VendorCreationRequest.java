@@ -7,7 +7,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class VendorCreationRequest {
-    private String vendorCode;
     private String name;
     private String countryCode;
     private String vendorGroupCode;
@@ -17,7 +16,6 @@ public class VendorCreationRequest {
 
     public Vendor toEntity() {
         return Vendor.builder()
-                .vendorCode(vendorCode)
                 .name(name)
                 .countryCode(countryCode)
                 .vendorGroupCode(vendorGroupCode)
