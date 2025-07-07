@@ -1,9 +1,8 @@
 package com.springFramework.mm.controller;
 
-import com.springFramework.mm.domain.Vendor;
-import com.springFramework.mm.domain.VendorCompany;
 import com.springFramework.mm.dto.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
+import com.springFramework.mm.dto.vendor.PurchasingCreationRequest;
 import com.springFramework.mm.service.VendorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +40,18 @@ public class VendorController {
     @PostMapping("/company")
     public String createCompany(CompanyCreationRequest request) {
         vendorService.createVendorCompany(request);
+        return "index.html";
+    }
+
+    @GetMapping("/purchasing/new")
+    public String purchasingCreationForm(Model model) {
+        model.addAttribute("purchasing", new PurchasingCreationRequest());
+        return "vendor/createPurchasingForm";
+    }
+
+    @PostMapping("/purchasing")
+    public String createPurchasing(PurchasingCreationRequest request) {
+        vendorService.createVendorPurchasing(request);
         return "index.html";
     }
 }

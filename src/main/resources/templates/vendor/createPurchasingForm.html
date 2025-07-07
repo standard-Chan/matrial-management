@@ -8,10 +8,10 @@
 
 <h1>구매 정보 등록</h1>
 
-<form th:action="@{/vendor-purchase}" th:object="${purchase}" method="post">
+<form th:action="@{/vendors/purchasing}" th:object="${purchasing}" method="post">
     <div>
         <label>구매처 번호:</label>
-        <input type="text" th:field="*{vendorCode}" required />
+        <input type="text" th:field="*{vendorId}" required />
     </div>
     <div>
         <label>구매조직 코드:</label>
