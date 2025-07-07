@@ -40,6 +40,13 @@ dependencies {
     // Thymeleaf
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
+    // test
+    testImplementation ("org.springframework.boot:spring-boot-starter-test")
+    testImplementation ("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation ("org.assertj:assertj-core")
+    // h2
+    testImplementation ("com.h2database:h2")
 }
 
 tasks.test {
