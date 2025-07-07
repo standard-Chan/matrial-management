@@ -37,6 +37,9 @@ dependencies {
     //MYSQL
     implementation("mysql:mysql-connector-java:8.0.33")
 
+    // Thymeleaf
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
 }
 
 tasks.test {
