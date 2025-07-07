@@ -1,4 +1,20 @@
 package com.springFramework.mm.domain;
 
+import jakarta.persistence.*;
+
+@Entity
 public class VendorCompany {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vendor_code", referencedColumnName = "vendorCode")
+    private Vendor vendor; // 구매처 코드
+
+    private String companyCode; // 회사 코드
+
+    private String accountCode; // 계정 코드
+
+    private String paymentTermCode; // 지급 조건
 }
