@@ -2,13 +2,13 @@ package com.springFramework.mm.dto.vendor;
 
 import com.springFramework.mm.domain.Vendor;
 import com.springFramework.mm.domain.VendorCompany;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CompanyCreationRequest {
     private Long vendorId;
     private String companyCode;

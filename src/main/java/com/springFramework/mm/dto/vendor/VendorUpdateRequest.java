@@ -6,6 +6,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class VendorUpdateRequest {
     private Long id;
     private String name;

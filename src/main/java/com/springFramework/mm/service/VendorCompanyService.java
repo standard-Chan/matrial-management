@@ -22,10 +22,10 @@ public class VendorCompanyService {
     private final VendorRepository vendorRepository;
 
     @Transactional
-    public void createVendorCompany(CompanyCreationRequest request) {
+    public VendorCompany createVendorCompany(CompanyCreationRequest request) {
         Vendor vendor = vendorRepository.getVendorById(request.getVendorId())
                 .orElseThrow(() -> new EntityNotFoundException());
-        companyRepository.save(request.toEntity(vendor));
+        return companyRepository.save(request.toEntity(vendor));
     }
 
     public List<VendorCompany> getAll() {

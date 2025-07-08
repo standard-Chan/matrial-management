@@ -19,8 +19,8 @@ public class VendorService {
     private final VendorRepository vendorRepository;
 
     @Transactional
-    public void createVendor(VendorCreationRequest request) {
-        vendorRepository.save(request.toEntity());
+    public Vendor createVendor(VendorCreationRequest request) {
+        return vendorRepository.save(request.toEntity());
     }
 
     public List<Vendor> getAllVendors() {
