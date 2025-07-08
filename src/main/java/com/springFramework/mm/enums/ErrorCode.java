@@ -1,7 +1,9 @@
 package com.springFramework.mm.enums;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public enum ErrorCode {
     // 400
     INVALID_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
@@ -20,10 +22,10 @@ public enum ErrorCode {
 
 
     private final HttpStatus status;
-    private final String description;
+    private final String message;
 
-    ErrorCode(HttpStatus status, String description) {
+    ErrorCode(HttpStatus status, String message) {
         this.status = status;
-        this.description = description;
+        this.message = message;
     }
 }
