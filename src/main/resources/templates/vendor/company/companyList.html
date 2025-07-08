@@ -3,22 +3,89 @@
 <head>
     <title>구매처 회사코드 정보</title>
     <meta charset="UTF-8">
+    <script>
+        async function updateSelectedCompanies() {
+            const checked = document.querySelectorAll("input[name='selectRow']:checked");
+            const dataList = Array.from(checked).map(chk => {
+                const row = chk.closest("tr");
+                return {
+                    id: row.dataset.id,
+                    companyCode: row.querySelector("input[name='companyCode']").value,
+                    accountCode: row.querySelector("input[name='accountCode']").value,
+                    paymentTermCode: row.querySelector("input[name='paymentTermCode']").value
+                };
+            });
+
+            if (dataList.length === 0) {
+                alert("수정할 회사를 선택하세요.");
+                return;
+            }
+
+            const response = await fetch("/api/v1/vendor-companies", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dataList)
+            });
+
+            if (response.ok) {
+                alert("수정 완료!");
+                location.reload();
+            } else {
+                alert("수정 실패");
+            }
+        }
+
+        async function deleteSelectedCompanies() {
+            const checked = document.querySelectorAll("input[name='selectRow']:checked");
+            const idList = Array.from(checked).map(chk => {
+                const row = chk.closest("tr");
+                return { id: row.dataset.id };
+            });
+
+            if (idList.length === 0) {
+                alert("삭제할 회사를 선택하세요.");
+                return;
+            }
+
+            const confirmDelete = confirm("정말 삭제하시겠습니까?");
+            if (!confirmDelete) return;
+
+            const response = await fetch("/api/v1/vendor-companies", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(idList)
+            });
+
+            if (response.ok) {
+                alert("삭제 완료!");
+                location.reload();
+            } else {
+                alert("삭제 실패");
+            }
+        }
+    </script>
 </head>
 <body>
 <h1>회사 코드별 정보</h1>
+
+<button onclick="updateSelectedCompanies()">선택 수정</button>
+<button onclick="deleteSelectedCompanies()">선택 삭제</button>
+
 <table border="1">
     <thead>
     <tr>
+        <th>선택</th>
         <th>회사코드</th>
         <th>계정</th>
         <th>지급조건</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="company : ${companies}">
-        <td th:text="${company.companyCode}">1000000000</td>
-        <td th:text="${company.accountCode}">2100001010</td>
-        <td th:text="${company.paymentTermCode}">M001</td>
+    <tr th:each="company : ${companies}" th:attr="data-id=${company.id}">
+        <td><input type="checkbox" name="selectRow"/></td>
+        <td><input type="text" name="companyCode" th:value="${company.companyCode}"/></td>
+        <td><input type="text" name="accountCode" th:value="${company.accountCode}"/></td>
+        <td><input type="text" name="paymentTermCode" th:value="${company.paymentTermCode}"/></td>
     </tr>
     </tbody>
 </table>
