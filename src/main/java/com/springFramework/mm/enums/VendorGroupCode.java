@@ -1,5 +1,7 @@
 package com.springFramework.mm.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 @Getter
@@ -18,5 +20,18 @@ public enum VendorGroupCode {
     VendorGroupCode(String code, String description) {
         this.code = code;
         this.description = description;
+    }
+
+    public String toValue() {
+        return this.code;
+    }
+
+    public static VendorGroupCode fromCode(String code) {
+        for (VendorGroupCode v : values()) {
+            if (v.code.equals(code)) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("Invalid code: " + code);
     }
 }

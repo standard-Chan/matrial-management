@@ -38,4 +38,7 @@ public class VendorCompany {
 
     @Enumerated(EnumType.STRING)
     private PaymentTermCode paymentTermCode; // 지급 조건
+
+    @Version
+    private Long version; // 낙관적 락 전용 필드
 }

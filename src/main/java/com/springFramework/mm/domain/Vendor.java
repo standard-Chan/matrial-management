@@ -1,6 +1,7 @@
 package com.springFramework.mm.domain;
 
 import com.springFramework.mm.enums.VendorGroupCode;
+import com.springFramework.mm.util.VendorGroupCodeConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,10 +22,13 @@ public class Vendor {
 
     private String personalId; // 개인 번호
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = VendorGroupCodeConverter.class)
     private VendorGroupCode vendorGroupCode; // 구매처 그룹
 
     private String countryCode; // 구매처 그룹
 
     private String address; // 주소
+
+    @Version
+    private Long version; // 낙관적 락 전용 필드
 }

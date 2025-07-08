@@ -30,3 +30,11 @@ public void deleteVendors(List<IdRequest> vendorIdList) {
     }
 }
 ```
+
+
+
+# 실수
+
+## Entity 구조를 수정 후 테스트 할때, table을 지우지 않았다.
+
+=> Entity 수정 작업을 진행할 때에는 update가 아닌 create로 바꿔서 하자. 

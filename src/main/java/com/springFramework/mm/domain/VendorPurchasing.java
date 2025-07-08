@@ -35,5 +35,6 @@ public class VendorPurchasing {
     @Enumerated(EnumType.STRING)
     private TaxCode taxCode;  // 세금 코드
 
-
+    @Version
+    private Long version; // 낙관적 락 전용 필드
 }
