@@ -1,10 +1,11 @@
 package com.springFramework.mm.dto.vendor;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CompanyUpdateRequest {
     private Long id;
     private String companyCode;

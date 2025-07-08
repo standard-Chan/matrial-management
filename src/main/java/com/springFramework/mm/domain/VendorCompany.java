@@ -25,7 +25,7 @@ public class VendorCompany {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
+    @JoinColumn(name = "vendor_id")
     private Vendor vendor; // 구매처 코드
 
     @Column(unique = true)
