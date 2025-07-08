@@ -3,12 +3,53 @@
 <head>
     <title>구매처 목록</title>
     <meta charset="UTF-8">
+    <script>
+        async function submitSelectedRows() {
+            const selectedRows = document.querySelectorAll("input[name='selectRow']:checked");
+
+            const dataList = Array.from(selectedRows).map(checkbox => {
+                const row = checkbox.closest("tr");
+                return {
+                    id: row.dataset.id,
+                    name: row.querySelector("input[name='name']").value,
+                    countryCode: row.querySelector("input[name='countryCode']").value,
+                    vendorGroupCode: row.querySelector("input[name='vendorGroupCode']").value,
+                    personalId: row.querySelector("input[name='personalId']").value,
+                    businessRegistrationNo: row.querySelector("input[name='businessRegistrationNo']").value,
+                    address: row.querySelector("input[name='address']").value
+                };
+            });
+
+            if (dataList.length === 0) {
+                alert("수정할 항목을 선택해주세요.");
+                return;
+            }
+
+            const response = await fetch('/vendors/updateAll', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataList)
+            });
+
+            if (response.ok) {
+                alert("선택된 항목 수정 완료!");
+            } else {
+                alert("수정 실패!");
+            }
+        }
+    </script>
 </head>
 <body>
 <h1>구매처 목록</h1>
+
+<button type="button" onclick="submitSelectedRows()">선택 수정하기</button>
+
 <table border="1">
     <thead>
     <tr>
+        <th>선택</th>
         <th>구매처명</th>
         <th>국가</th>
         <th>구매처 그룹</th>
@@ -18,13 +59,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="vendor : ${vendors}">
-        <td th:text="${vendor.name}">신세계푸드</td>
-        <td th:text="${vendor.countryCode}">KR</td>
-        <td th:text="${vendor.vendorGroupCode}">1000</td>
-        <td th:text="${vendor.personalId}">850101-1234567</td>
-        <td th:text="${vendor.businessRegistrationNo}">1650212345</td>
-        <td th:text="${vendor.address}">서울시 서초구 양재동</td>
+    <tr th:each="vendor : ${vendors}" th:attr="data-id=${vendor.id}">
+        <td><input type="checkbox" name="selectRow"/></td>
+        <td><input type="text" name="name" th:value="${vendor.name}"/></td>
+        <td><input type="text" name="countryCode" th:value="${vendor.countryCode}"/></td>
+        <td><input type="text" name="vendorGroupCode" th:value="${vendor.vendorGroupCode}"/></td>
+        <td><input type="text" name="personalId" th:value="${vendor.personalId}"/></td>
+        <td><input type="text" name="businessRegistrationNo" th:value="${vendor.businessRegistrationNo}"/></td>
+        <td><input type="text" name="address" th:value="${vendor.address}"/></td>
     </tr>
     </tbody>
 </table>
