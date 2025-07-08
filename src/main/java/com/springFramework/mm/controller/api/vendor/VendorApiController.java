@@ -1,14 +1,12 @@
 package com.springFramework.mm.controller.api.vendor;
 
 import com.springFramework.mm.domain.Vendor;
+import com.springFramework.mm.dto.common.IdRequest;
 import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
 import com.springFramework.mm.service.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,11 @@ public class VendorApiController {
     @PutMapping()
     public ResponseEntity<List<Vendor>> updateVendors(@RequestBody List<VendorUpdateRequest> vendorList) {
         return ResponseEntity.ok(vendorService.updateVendors(vendorList));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteVendors(@RequestBody List<IdRequest> vendorIdList) {
+        vendorService.deleteVendors(vendorIdList);
+        return ResponseEntity.status(204).build();
     }
 }

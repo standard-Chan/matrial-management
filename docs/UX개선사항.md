@@ -32,4 +32,4 @@
 
 **UX 개선 방식**
 ![img.png](img/UpdateUX_After.png)
-- 사용자가 변경한 row들을 한번에 반영 
+- 사용자가 변경한 row들을 한번에 반영
