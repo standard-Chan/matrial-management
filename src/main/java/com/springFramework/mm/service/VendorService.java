@@ -4,10 +4,12 @@ import com.springFramework.mm.domain.Vendor;
 import com.springFramework.mm.dto.common.IdRequest;
 import com.springFramework.mm.dto.vendor.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
+import com.springFramework.mm.enums.ErrorCode;
+import com.springFramework.mm.exception.vendor.VendorException;
 import com.springFramework.mm.repository.VendorRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class VendorService {
     public List<Vendor> updateVendors(List<VendorUpdateRequest> requests) {
         return requests.stream().map(request -> {
             Vendor vendor = vendorRepository.getVendorById(request.getId())
-                    .orElseThrow(()-> new EntityNotFoundException());
+                    .orElseThrow(()-> new VendorException(ErrorCode.NOT_FOUND_VENDOR));
 
             vendor.setName(request.getName());
             vendor.setPersonalId(request.getPersonalId());
@@ -46,6 +48,10 @@ public class VendorService {
 
     @Transactional
     public void deleteVendors(List<IdRequest> vendorIdList) {
-        vendorIdList.forEach(request -> vendorRepository.deleteById(request.getId()));
+        try {
+            vendorIdList.forEach(request -> vendorRepository.deleteById(request.getId()));
+        } catch (DataIntegrityViolationException e) {
+            throw new VendorException(ErrorCode.CONFLICT_RELATION_EXISTS);
+        }
     }
 }

@@ -5,9 +5,11 @@ import com.springFramework.mm.domain.VendorPurchasing;
 import com.springFramework.mm.dto.common.IdRequest;
 import com.springFramework.mm.dto.vendor.PurchasingCreationRequest;
 import com.springFramework.mm.dto.vendor.PurchasingUpdateRequest;
+import com.springFramework.mm.enums.ErrorCode;
+import com.springFramework.mm.exception.vendor.VendorException;
+import com.springFramework.mm.exception.vendor.VendorPurchasingException;
 import com.springFramework.mm.repository.VendorPurchasingRepository;
 import com.springFramework.mm.repository.VendorRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class VendorPurchasingService {
 
     public void createVendorPurchasing(PurchasingCreationRequest request) {
         Vendor vendor = vendorRepository.getVendorById(request.getVendorId())
-                .orElseThrow(() -> new EntityNotFoundException());
+                .orElseThrow(() -> new VendorException(ErrorCode.NOT_FOUND_VENDOR));
         vendorPurchasingRepository.save(request.toEntity(vendor));
     }
 
@@ -33,7 +35,7 @@ public class VendorPurchasingService {
     public void updatePurchasings(List<PurchasingUpdateRequest> requestList) {
         for (PurchasingUpdateRequest request : requestList) {
             VendorPurchasing purchasing = vendorPurchasingRepository.findById(request.getId())
-                    .orElseThrow(() -> new RuntimeException("구매조직 ID " + request.getId() + " 없음"));
+                    .orElseThrow(() -> new VendorPurchasingException(ErrorCode.NOT_FOUND_PURCHASING));
 
             purchasing.setPurchasingOrgCode(request.getPurchasingOrgCode());
             purchasing.setPurchasingGroupCode(request.getPurchasingGroupCode());
