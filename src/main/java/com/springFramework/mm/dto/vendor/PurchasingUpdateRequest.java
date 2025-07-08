@@ -7,6 +7,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class PurchasingUpdateRequest {
     private Long id;
     private String purchasingOrgCode;

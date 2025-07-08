@@ -12,6 +12,7 @@ import com.springFramework.mm.repository.VendorCompanyRepository;
 import com.springFramework.mm.repository.VendorRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,18 +36,26 @@ public class VendorCompanyService {
     }
 
     @Transactional
-    public void updateCompanies(List<CompanyUpdateRequest> requestList) {
-        for (CompanyUpdateRequest request : requestList) {
-            // id 기준으로 수정
-            VendorCompany company = companyRepository.findById(request.getId())
-                    .orElseThrow(() -> new VendorCompanyException(ErrorCode.NOT_FOUND_COMPANY));
+    public List<VendorCompany> updateCompanies(List<CompanyUpdateRequest> requestList) {
+        return requestList.stream().map(request -> {
+            try {
+                return updateCompany(request);
+            } catch (OptimisticLockingFailureException e) {
+                throw new VendorException(ErrorCode.CONFLICT_OPTIMISTIC_LOCK);
+            }
+        }).toList();
+    }
 
-            company.setCompanyCode(request.getCompanyCode());
-            company.setAccountCode(request.getAccountCode());
-            company.setPaymentTermCode(request.getPaymentTermCode());
+    @Transactional
+    public VendorCompany updateCompany(CompanyUpdateRequest request) {
+        VendorCompany company = companyRepository.findById(request.getId())
+                .orElseThrow(() -> new VendorCompanyException(ErrorCode.NOT_FOUND_COMPANY));
 
-            companyRepository.save(company);
-        }
+        company.setCompanyCode(request.getCompanyCode());
+        company.setAccountCode(request.getAccountCode());
+        company.setPaymentTermCode(request.getPaymentTermCode());
+
+        return companyRepository.save(company);
     }
 
     @Transactional

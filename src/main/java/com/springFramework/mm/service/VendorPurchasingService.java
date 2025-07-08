@@ -11,6 +11,7 @@ import com.springFramework.mm.exception.vendor.VendorPurchasingException;
 import com.springFramework.mm.repository.VendorPurchasingRepository;
 import com.springFramework.mm.repository.VendorRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,18 +33,26 @@ public class VendorPurchasingService {
         return vendorPurchasingRepository.findAll();
     }
 
-    public void updatePurchasings(List<PurchasingUpdateRequest> requestList) {
-        for (PurchasingUpdateRequest request : requestList) {
-            VendorPurchasing purchasing = vendorPurchasingRepository.findById(request.getId())
-                    .orElseThrow(() -> new VendorPurchasingException(ErrorCode.NOT_FOUND_PURCHASING));
+    public List<VendorPurchasing> updatePurchasings(List<PurchasingUpdateRequest> requestList) {
+        return requestList.stream().map((request) -> {
+            try {
+                return updatePurchasing(request);
+            } catch (OptimisticLockingFailureException e) {
+                throw new VendorException(ErrorCode.CONFLICT_OPTIMISTIC_LOCK);
+            }
+        }).toList();
+    }
 
-            purchasing.setPurchasingOrgCode(request.getPurchasingOrgCode());
-            purchasing.setPurchasingGroupCode(request.getPurchasingGroupCode());
-            purchasing.setCurrency(request.getCurrency());
-            purchasing.setTaxCode(request.getTaxCode());
+    public VendorPurchasing updatePurchasing(PurchasingUpdateRequest request) {
+        VendorPurchasing purchasing = vendorPurchasingRepository.findById(request.getId())
+                .orElseThrow(() -> new VendorPurchasingException(ErrorCode.NOT_FOUND_PURCHASING));
 
-            vendorPurchasingRepository.save(purchasing);
-        }
+        purchasing.setPurchasingOrgCode(request.getPurchasingOrgCode());
+        purchasing.setPurchasingGroupCode(request.getPurchasingGroupCode());
+        purchasing.setCurrency(request.getCurrency());
+        purchasing.setTaxCode(request.getTaxCode());
+
+        return vendorPurchasingRepository.save(purchasing);
     }
 
     public void deletePurchasings(List<IdRequest> idList) {

@@ -18,8 +18,7 @@ public class VendorPurchasingApiController {
 
     @PutMapping
     public ResponseEntity<?> updatePurchasings(@RequestBody List<PurchasingUpdateRequest> requestList) {
-        vendorPurchasingService.updatePurchasings(requestList);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(vendorPurchasingService.updatePurchasings(requestList));
     }
 
     @DeleteMapping

@@ -4,7 +4,6 @@ import com.springFramework.mm.MaterialManagerApplication;
 import com.springFramework.mm.domain.Vendor;
 import com.springFramework.mm.dto.vendor.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
-import com.springFramework.mm.exception.vendor.VendorException;
 import com.springFramework.mm.repository.VendorRepository;
 import com.springFramework.mm.service.VendorService;
 import jakarta.persistence.EntityManager;
@@ -13,14 +12,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.springFramework.mm.enums.ErrorCode.CONFLICT_OPTIMISTIC_LOCK;
 import static com.springFramework.mm.enums.VendorGroupCode.DOMESTIC;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

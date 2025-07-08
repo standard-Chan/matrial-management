@@ -18,8 +18,7 @@ public class VendorCompanyApiController {
 
     @PutMapping
     public ResponseEntity<?> updateCompanies(@RequestBody List<CompanyUpdateRequest> requestList) {
-        vendorCompanyService.updateCompanies(requestList);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(vendorCompanyService.updateCompanies(requestList));
     }
 
     @DeleteMapping
