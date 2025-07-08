@@ -3,12 +3,76 @@
 <head>
     <title>구매조직 정보</title>
     <meta charset="UTF-8">
+    <script>
+        async function updateSelectedPurchasings() {
+            const checked = document.querySelectorAll("input[name='selectRow']:checked");
+            const dataList = Array.from(checked).map(chk => {
+                const row = chk.closest("tr");
+                return {
+                    id: row.dataset.id,
+                    purchasingOrgCode: row.querySelector("input[name='purchasingOrgCode']").value,
+                    purchasingGroupCode: row.querySelector("input[name='purchasingGroupCode']").value,
+                    currency: row.querySelector("input[name='currency']").value,
+                    taxCode: row.querySelector("input[name='taxCode']").value
+                };
+            });
+
+            if (dataList.length === 0) {
+                alert("수정할 항목을 선택하세요.");
+                return;
+            }
+
+            const response = await fetch("/api/v1/vendor-purchasings", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dataList)
+            });
+
+            if (response.ok) {
+                alert("수정을 완료하였습니다.");
+                location.reload();
+            } else {
+                alert("수정이 실패하였습니다.");
+            }
+        }
+
+        async function deleteSelectedPurchasings() {
+            const checked = document.querySelectorAll("input[name='selectRow']:checked");
+            const idList = Array.from(checked).map(chk => {
+                const row = chk.closest("tr");
+                return { id: row.dataset.id };
+            });
+
+            if (idList.length === 0) {
+                alert("삭제할 항목을 선택하세요.");
+                return;
+            }
+
+            const response = await fetch("/api/v1/vendor-purchasings", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(idList)
+            });
+
+            if (response.ok) {
+                alert("삭제가 완료되었습니다.");
+                location.reload();
+            } else {
+                alert("삭제가 실패하였습니다.");
+            }
+        }
+    </script>
 </head>
 <body>
 <h1>구매조직별 정보</h1>
+
+<button onclick="updateSelectedPurchasings()">선택 수정</button>
+<button onclick="deleteSelectedPurchasings()">선택 삭제</button>
+
 <table border="1">
     <thead>
     <tr>
+        <th>선택</th>
         <th>구매조직</th>
         <th>구매그룹</th>
         <th>통화</th>
@@ -16,11 +80,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="p : ${purchasingList}">
-        <td th:text="${p.purchasingOrgCode}">1000</td>
-        <td th:text="${p.purchasingGroupCode}">101</td>
-        <td th:text="${p.currency}">KRW</td>
-        <td th:text="${p.taxCode}">V1</td>
+    <tr th:each="p : ${purchasingList}" th:attr="data-id=${p.id}">
+        <td><input type="checkbox" name="selectRow"/></td>
+        <td><input type="text" name="purchasingOrgCode" th:value="${p.purchasingOrgCode}" /></td>
+        <td><input type="text" name="purchasingGroupCode" th:value="${p.purchasingGroupCode}" /></td>
+        <td><input type="text" name="currency" th:value="${p.currency}" /></td>
+        <td><input type="text" name="taxCode" th:value="${p.taxCode}" /></td>
     </tr>
     </tbody>
 </table>

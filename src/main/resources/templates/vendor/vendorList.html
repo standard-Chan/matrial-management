@@ -67,6 +67,8 @@
             if (response.ok) {
                 alert("선택된 항목이 삭제되었습니다.");
                 window.location.href = "/vendors";
+            } else if (response.status === 409) {
+                alert(await response.text());
             } else {
                 alert("삭제 실패. 다시 시도해주세요.");
             }
