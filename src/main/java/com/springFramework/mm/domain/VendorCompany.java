@@ -1,5 +1,7 @@
 package com.springFramework.mm.domain;
 
+import com.springFramework.mm.enums.AccountCode;
+import com.springFramework.mm.enums.PaymentTermCode;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Type;
@@ -31,7 +33,9 @@ public class VendorCompany {
     @Column(unique = true)
     private String companyCode; // 회사 코드
 
-    private String accountCode; // 계정 코드
+    @Enumerated(EnumType.STRING) // enum String 변환
+    private AccountCode accountCode; // 계정 코드
 
-    private String paymentTermCode; // 지급 조건
+    @Enumerated(EnumType.STRING)
+    private PaymentTermCode paymentTermCode; // 지급 조건
 }

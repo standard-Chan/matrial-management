@@ -2,6 +2,7 @@ package com.springFramework.mm.dto.vendor;
 
 import com.springFramework.mm.domain.Vendor;
 import com.springFramework.mm.domain.VendorPurchasing;
+import com.springFramework.mm.enums.TaxCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class PurchasingCreationRequest {
     private String purchasingOrgCode;
     private String purchasingGroupCode;
     private String currency;
-    private String taxCode;
+    private TaxCode taxCode;
 
     public VendorPurchasing toEntity(Vendor vendor) {
         return VendorPurchasing.builder()

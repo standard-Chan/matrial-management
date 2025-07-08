@@ -17,6 +17,9 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
+import static com.springFramework.mm.enums.TaxCode.V1;
+import static com.springFramework.mm.enums.TaxCode.V2;
+import static com.springFramework.mm.enums.VendorGroupCode.DOMESTIC;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest(classes = MaterialManagerApplication.class)
@@ -42,7 +45,7 @@ public class VendorPurchasingServiceTest {
         return vendorRepository.save(Vendor.builder()
                 .name("벤더테스트")
                 .countryCode("KR")
-                .vendorGroupCode("G1")
+                .vendorGroupCode(DOMESTIC)
                 .personalId("850101-1234567")
                 .businessRegistrationNo("1234567890")
                 .address("서울시 강남구")
@@ -54,7 +57,7 @@ public class VendorPurchasingServiceTest {
         // given
         Vendor vendor = saveVendor();
         PurchasingCreationRequest request = new PurchasingCreationRequest(
-                vendor.getId(), "1000", "101", "KRW", "V1"
+                vendor.getId(), "1000", "101", "KRW", V1
         );
 
         // when
@@ -75,7 +78,7 @@ public class VendorPurchasingServiceTest {
                 .purchasingOrgCode("1000")
                 .purchasingGroupCode("101")
                 .currency("KRW")
-                .taxCode("V1")
+                .taxCode(V1)
                 .build());
 
         // when
@@ -96,7 +99,7 @@ public class VendorPurchasingServiceTest {
                         .purchasingOrgCode("1000")
                         .purchasingGroupCode("101")
                         .currency("KRW")
-                        .taxCode("V1")
+                        .taxCode(V1)
                         .build()
         );
 
@@ -105,7 +108,7 @@ public class VendorPurchasingServiceTest {
                 "2000",
                 "201",
                 "USD",
-                "V2"
+                V2
         );
 
         // when
@@ -127,7 +130,7 @@ public class VendorPurchasingServiceTest {
                         .purchasingOrgCode("1000")
                         .purchasingGroupCode("101")
                         .currency("KRW")
-                        .taxCode("V1")
+                        .taxCode(V1)
                         .build()
         );
 

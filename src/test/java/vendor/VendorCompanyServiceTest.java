@@ -17,6 +17,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
+import static com.springFramework.mm.enums.AccountCode.PAYABLE_DOMESTIC;
+import static com.springFramework.mm.enums.PaymentTermCode.M001;
+import static com.springFramework.mm.enums.PaymentTermCode.M002;
+import static com.springFramework.mm.enums.VendorGroupCode.DOMESTIC;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest(classes = MaterialManagerApplication.class)
@@ -42,7 +46,7 @@ class VendorCompanyServiceTest {
         return vendorRepository.save(Vendor.builder()
                 .name("벤더")
                 .countryCode("KR")
-                .vendorGroupCode("G1")
+                .vendorGroupCode(DOMESTIC)
                 .personalId("000000-0000000")
                 .businessRegistrationNo("1234567890")
                 .address("서울")
@@ -53,7 +57,7 @@ class VendorCompanyServiceTest {
     void 회사코드_정상등록() {
         // given
         Vendor vendor = prepareVendor();
-        CompanyCreationRequest request = new CompanyCreationRequest(vendor.getId(), "1000", "2100001010", "M001");
+        CompanyCreationRequest request = new CompanyCreationRequest(vendor.getId(), "1000", PAYABLE_DOMESTIC, M001);
 
         // when
         VendorCompany result = vendorCompanyService.createVendorCompany(request);
@@ -72,16 +76,16 @@ class VendorCompanyServiceTest {
                 VendorCompany.builder()
                         .vendor(vendor)
                         .companyCode("1000")
-                        .accountCode("2100001010")
-                        .paymentTermCode("M001")
+                        .accountCode(PAYABLE_DOMESTIC)
+                        .paymentTermCode(M001)
                         .build()
         );
 
         CompanyUpdateRequest updateRequest = new CompanyUpdateRequest(
                 company.getId(),
                 "2000",
-                "3100002020",
-                "M002"
+                PAYABLE_DOMESTIC ,
+                M002
         );
 
         // when
@@ -101,15 +105,15 @@ class VendorCompanyServiceTest {
         vendorCompanyRepository.save(VendorCompany.builder()
                 .vendor(vendor)
                 .companyCode("1000")
-                .accountCode("2100001010")
-                .paymentTermCode("M001")
+                .accountCode(PAYABLE_DOMESTIC)
+                .paymentTermCode(M001)
                 .build());
 
         vendorCompanyRepository.save(VendorCompany.builder()
                 .vendor(vendor)
                 .companyCode("2000")
-                .accountCode("3100002020")
-                .paymentTermCode("M002")
+                .accountCode(PAYABLE_DOMESTIC)
+                .paymentTermCode(M002)
                 .build());
 
         // when
@@ -127,8 +131,8 @@ class VendorCompanyServiceTest {
                 VendorCompany.builder()
                         .vendor(vendor)
                         .companyCode("1000")
-                        .accountCode("2100001010")
-                        .paymentTermCode("M001")
+                        .accountCode(PAYABLE_DOMESTIC)
+                        .paymentTermCode(M001)
                         .build()
         );
 

@@ -1,5 +1,7 @@
 package com.springFramework.mm.dto.vendor;
 
+import com.springFramework.mm.enums.AccountCode;
+import com.springFramework.mm.enums.PaymentTermCode;
 import lombok.*;
 
 @Getter
@@ -9,6 +11,6 @@ import lombok.*;
 public class CompanyUpdateRequest {
     private Long id;
     private String companyCode;
-    private String accountCode;
-    private String paymentTermCode;
+    private AccountCode accountCode;
+    private PaymentTermCode paymentTermCode;
 }

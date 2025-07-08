@@ -1,5 +1,6 @@
 package com.springFramework.mm.domain;
 
+import com.springFramework.mm.enums.VendorGroupCode;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,7 +21,8 @@ public class Vendor {
 
     private String personalId; // 개인 번호
 
-    private String vendorGroupCode; // 구매처 그룹
+    @Enumerated(EnumType.STRING)
+    private VendorGroupCode vendorGroupCode; // 구매처 그룹
 
     private String countryCode; // 구매처 그룹
 

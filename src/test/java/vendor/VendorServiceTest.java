@@ -16,12 +16,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.springFramework.mm.enums.AccountCode.PAYABLE_DOMESTIC;
+import static com.springFramework.mm.enums.PaymentTermCode.M001;
+import static com.springFramework.mm.enums.VendorGroupCode.DOMESTIC;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -49,7 +51,7 @@ public class VendorServiceTest {
         VendorCreationRequest request = VendorCreationRequest.builder()
                 .name("신세계푸드")
                 .countryCode("KR")
-                .vendorGroupCode("1000")
+                .vendorGroupCode(DOMESTIC)
                 .personalId("850101-1234567")
                 .businessRegistrationNo("1650212345")
                 .address("서울시 서초구 양재동")
@@ -134,7 +136,7 @@ public class VendorServiceTest {
         return VendorCreationRequest.builder()
                 .name(name)
                 .countryCode(country)
-                .vendorGroupCode("1000")
+                .vendorGroupCode(DOMESTIC)
                 .personalId("850101-1234567")
                 .businessRegistrationNo("1650212345")
                 .address("서울시 강남구")
@@ -146,7 +148,7 @@ public class VendorServiceTest {
                 .id(id)
                 .name(name)
                 .countryCode(countryCode)
-                .vendorGroupCode("updated:1000")
+                .vendorGroupCode(DOMESTIC)
                 .personalId("updated:850101-1234567")
                 .businessRegistrationNo("updated:1650212345")
                 .address("서울시 강남구2")
@@ -157,8 +159,8 @@ public class VendorServiceTest {
         return CompanyCreationRequest.builder()
                 .vendorId(vendorId)
                 .companyCode("1000") // 회사 코드
-                .accountCode("2100001010") // 외상매입금_국내
-                .paymentTermCode("M001") // 지급 코드
+                .accountCode(PAYABLE_DOMESTIC) // 외상매입금_국내
+                .paymentTermCode(M001) // 지급 코드
                 .build();
 
     }

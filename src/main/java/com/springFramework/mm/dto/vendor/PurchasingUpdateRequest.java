@@ -1,5 +1,6 @@
 package com.springFramework.mm.dto.vendor;
 
+import com.springFramework.mm.enums.TaxCode;
 import lombok.*;
 
 @Getter
@@ -11,6 +12,6 @@ public class PurchasingUpdateRequest {
     private String purchasingOrgCode;
     private String purchasingGroupCode;
     private String currency;
-    private String taxCode;
+    private TaxCode taxCode;
 }
 

@@ -2,6 +2,8 @@ package com.springFramework.mm.dto.vendor;
 
 import com.springFramework.mm.domain.Vendor;
 import com.springFramework.mm.domain.VendorCompany;
+import com.springFramework.mm.enums.AccountCode;
+import com.springFramework.mm.enums.PaymentTermCode;
 import lombok.*;
 
 @Setter
@@ -12,8 +14,8 @@ import lombok.*;
 public class CompanyCreationRequest {
     private Long vendorId;
     private String companyCode;
-    private String accountCode;
-    private String paymentTermCode;
+    private AccountCode accountCode;
+    private PaymentTermCode paymentTermCode;
 
     public VendorCompany toEntity(Vendor vendor) {
         return VendorCompany.builder()

@@ -1,5 +1,6 @@
 package com.springFramework.mm.domain;
 
+import com.springFramework.mm.enums.TaxCode;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,7 +31,9 @@ public class VendorPurchasing {
     private String purchasingOrgCode;  // 구매조직 코드
     private String purchasingGroupCode;  // 구매그룹 코드
     private String currency;  // 구매오더 통화
-    private String taxCode;  // 세금 코드
+
+    @Enumerated(EnumType.STRING)
+    private TaxCode taxCode;  // 세금 코드
 
 
 }
