@@ -1,14 +1,15 @@
-package com.springFramework.mm.controller.vendor;
+package com.springFramework.mm.controller.page.vendor;
 
+import com.springFramework.mm.domain.Vendor;
 import com.springFramework.mm.dto.vendor.VendorCreationRequest;
-import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
-import com.springFramework.mm.dto.vendor.PurchasingCreationRequest;
+import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
 import com.springFramework.mm.service.VendorService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/vendors")
@@ -28,12 +29,12 @@ public class VendorController {
     @GetMapping()
     public String getVendorList(Model model) {
         model.addAttribute("vendors", vendorService.getAllVendors());
-        return "/vendor/vendorList";
+        return "vendor/vendorList";
     }
 
     @PostMapping()
     public String createVendor(VendorCreationRequest request) {
         vendorService.createVendor(request);
-        return "index.html";
+        return "index";
     }
 }

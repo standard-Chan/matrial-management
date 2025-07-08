@@ -25,8 +25,8 @@
                 return;
             }
 
-            const response = await fetch('/vendors/updateAll', {
-                method: 'POST',
+            const response = await fetch('/api/v1/vendors', {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -35,6 +35,7 @@
 
             if (response.ok) {
                 alert("선택된 항목 수정 완료!");
+                window.location.href = "/vendors";
             } else {
                 alert("수정 실패!");
             }
@@ -50,6 +51,7 @@
     <thead>
     <tr>
         <th>선택</th>
+        <th>구매처 번호</th>
         <th>구매처명</th>
         <th>국가</th>
         <th>구매처 그룹</th>
@@ -61,6 +63,7 @@
     <tbody>
     <tr th:each="vendor : ${vendors}" th:attr="data-id=${vendor.id}">
         <td><input type="checkbox" name="selectRow"/></td>
+        <td th:text="${vendor.id}"/>
         <td><input type="text" name="name" th:value="${vendor.name}"/></td>
         <td><input type="text" name="countryCode" th:value="${vendor.countryCode}"/></td>
         <td><input type="text" name="vendorGroupCode" th:value="${vendor.vendorGroupCode}"/></td>

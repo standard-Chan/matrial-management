@@ -1,4 +1,4 @@
-package com.springFramework.mm.controller.vendor;
+package com.springFramework.mm.controller.page.vendor;
 
 import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
 import com.springFramework.mm.service.VendorCompanyService;
