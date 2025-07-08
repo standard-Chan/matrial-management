@@ -18,6 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
 import static com.springFramework.mm.enums.AccountCode.PAYABLE_DOMESTIC;
+import static com.springFramework.mm.enums.AccountCode.PAYABLE_IMPORT;
 import static com.springFramework.mm.enums.PaymentTermCode.M001;
 import static com.springFramework.mm.enums.PaymentTermCode.M002;
 import static com.springFramework.mm.enums.VendorGroupCode.DOMESTIC;
@@ -69,7 +70,7 @@ class VendorCompanyServiceTest {
     }
 
     @Test
-    void 회사코드_수정_성공() {
+    void 회사코드_수정() {
         // given
         Vendor vendor = prepareVendor();
         VendorCompany company = vendorCompanyRepository.save(
@@ -84,7 +85,7 @@ class VendorCompanyServiceTest {
         CompanyUpdateRequest updateRequest = new CompanyUpdateRequest(
                 company.getId(),
                 "2000",
-                PAYABLE_DOMESTIC ,
+                PAYABLE_IMPORT,
                 M002
         );
 
@@ -94,8 +95,8 @@ class VendorCompanyServiceTest {
         // then
         VendorCompany updated = vendorCompanyRepository.findById(company.getId()).orElseThrow();
         assertThat(updated.getCompanyCode()).isEqualTo("2000");
-        assertThat(updated.getAccountCode()).isEqualTo("3100002020");
-        assertThat(updated.getPaymentTermCode()).isEqualTo("M002");
+        assertThat(updated.getAccountCode().getCode()).isEqualTo("2100001020");
+        assertThat(updated.getPaymentTermCode().getCode()).isEqualTo("M002");
     }
 
     @Test
