@@ -7,6 +7,7 @@ import com.springFramework.mm.dto.common.IdRequest;
 import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
 import com.springFramework.mm.dto.vendor.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
+import com.springFramework.mm.exception.vendor.VendorException;
 import com.springFramework.mm.repository.VendorCompanyRepository;
 import com.springFramework.mm.repository.VendorRepository;
 import com.springFramework.mm.service.VendorCompanyService;
@@ -119,7 +120,7 @@ public class VendorServiceTest {
 
         // then
         // 연관관계 삭제 방지 에러
-        assertThrows(DataIntegrityViolationException.class, () -> {
+        assertThrows(VendorException.class, () -> {
             vendorService.deleteVendors(list);
             vendorRepository.flush();
         });

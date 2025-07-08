@@ -50,6 +50,7 @@ public class VendorService {
     public void deleteVendors(List<IdRequest> vendorIdList) {
         try {
             vendorIdList.forEach(request -> vendorRepository.deleteById(request.getId()));
+            vendorRepository.flush(); // 예외 발생 여부를 확인하기 위해서 강제 commit
         } catch (DataIntegrityViolationException e) {
             throw new VendorException(ErrorCode.CONFLICT_RELATION_EXISTS);
         }
