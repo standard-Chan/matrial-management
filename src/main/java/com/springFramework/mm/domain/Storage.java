@@ -17,7 +17,7 @@ public class Storage {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)  // 데이터를 조회할 때, 항상 시설과 같이 가져올 필요가 있음
     @JoinColumn(name = "Factilty_id")
     private Facility facility;   // 저장소가 있는 시설
 }

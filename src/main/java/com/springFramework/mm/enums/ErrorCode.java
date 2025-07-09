@@ -8,6 +8,7 @@ public enum ErrorCode {
     // 400
     INVALID_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
     MISSING_REQUIRED_VALUE(HttpStatus.BAD_REQUEST, "필수 값이 누락되었습니다."),
+    INVALID_QUANTITY(HttpStatus.BAD_REQUEST, "잘못된 수량입니다."),
 
     // 404
     NOT_FOUND_VENDOR(HttpStatus.NOT_FOUND, "해당 vendor를 찾을 수 없습니다."),
