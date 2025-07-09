@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>구매 오더 생성</title>
+    <meta charset="UTF-8">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let itemIndex = 0;
+        const materials = [[${materials}]];
+        const storages = [[${storages}]];
+
+        const prices = {};
+        const names = {};
+
+        // prices, names 배열 초기화  (index가 0,1로 차이가 있어서 별도로 prices, names를 만들어서 처리함.)
+        materials.forEach(m => {
+            prices[m.id] = m.price;
+            names[m.id] = m.name;
+        });
+
+
+        function addItemRow() {
+            const tbody = document.getElementById("po-items");
+            const row = document.createElement("tr");
+
+            let materialOptions = '<option value="">선택</option>';
+            materials.forEach(m => {
+                materialOptions += `<option value="${m.id}">${m.id} (${m.name})</option>`;
+            });
+
+            let storageOptions = '<option value="">선택</option>';
+            storages.forEach(s => {
+                storageOptions += `<option value="${s.id}">${s.name} (${s.facility.name})</option>`;
+            });
+
+            row.innerHTML = `
+                <td>${itemIndex + 1}</td>
+                <td><select name="items[${itemIndex}].materialId" onchange="updateMaterialInfo(this, ${itemIndex})">${materialOptions}</select></td>
+                <td><span id="matName${itemIndex}"></span></td>
+                <td><input type="number" name="items[${itemIndex}].quantity" onchange="updateCost(${itemIndex})" required></td>
+                <td><span id="totalCost${itemIndex}"></span></td>
+                <td><select name="items[${itemIndex}].storageId">${storageOptions}</select></td>
+                <td><input type="date" name="items[${itemIndex}].deliveryDate" required></td>
+            `;
+
+            tbody.appendChild(row);
+            itemIndex++;
+        }
+
+        // 재료 이름 업데이트
+        function updateMaterialInfo(select, index) {
+            const materialId = select.value;
+            document.getElementById("matName" + index).innerText = names[materialId] || "";
+            updateCost(index);
+        }
+
+        // 전체 비용 업데이트
+        function updateCost(index) {
+            const quantityInput = document.querySelector(`[name='items[${index}].quantity']`);
+            const materialSelect = document.querySelector(`[name='items[${index}].materialId']`);
+            const totalCostSpan = document.getElementById("totalCost" + index);
+
+            const quantity = parseInt(quantityInput.value) || 0;
+            const materialId = materialSelect.value;
+            const price = prices[materialId] || 0;
+
+            totalCostSpan.innerText = quantity * price;
+        }
+        /*]]>*/
+    </script>
+</head>
+<body>
+<h1>구매 오더 생성</h1>
+
+<form th:action="@{/purchase-orders/save}" method="post">
+    <fieldset>
+        <legend>구매 오더 헤더</legend>
+        <label>주문일자:
+            <input type="datetime-local" name="purchaseOrderHeader.orderDate" required>
+        </label>
+        <label>구매처:
+            <select name="purchaseOrderHeader.vendorId" required>
+                <option th:each="v : ${vendors}" th:value="${v.id}" th:text="${v.name}"></option>
+            </select>
+        </label>
+    </fieldset>
+
+    <br/>
+
+    <fieldset>
+        <legend>구매 오더 항목</legend>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>품목</th>
+                <th>자재번호</th>
+                <th>자재명</th>
+                <th>PO수량</th>
+                <th>총 비용</th>
+                <th>저장위치</th>
+                <th>납품일</th>
+            </tr>
+            </thead>
+            <tbody id="po-items">
+            <!-- JS로 row 생성 -->
+            </tbody>
+        </table>
+        <button type="button" onclick="addItemRow()">항목 추가</button>
+    </fieldset>
+
+    <br/>
+    <button type="submit">구매 오더 저장</button>
+</form>
+</body>
+</html>

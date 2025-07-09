@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>📦 저장소 목록</h1>
+<h1> 시설/저장소 목록</h1>
 
 <table border="1">
     <thead>
@@ -18,17 +18,17 @@
     </thead>
     <tbody>
     <tr th:each="storage : ${storages}">
-        <td th:text="${storage.id}"></td>
-        <td th:text="${storage.name}"></td>
         <td th:text="${storage.facility.name}"></td>
         <td th:text="${storage.facility.address}"></td>
+        <td th:text="${storage.id}"></td>
+        <td th:text="${storage.name}"></td>
     </tr>
     </tbody>
 </table>
 
 <hr/>
 
-<h2>🏢 새로운 Facility 등록</h2>
+<h2>🏢 Facility 등록</h2>
 <form th:action="@{/facility-storages/facilities}" method="post" th:object="${newFacility}">
     <label>이름: <input type="text" th:field="*{name}" required/></label><br/>
     <label>주소: <input type="text" th:field="*{address}" required/></label><br/>
@@ -37,7 +37,7 @@
 
 <hr/>
 
-<h2>📦 새로운 Storage 등록</h2>
+<h2>📦 Storage 등록</h2>
 <form th:action="@{/facility-storages/storages}" method="post" th:object="${newStorage}">
     <label>이름: <input type="text" th:field="*{name}" required/></label><br/>
     <label>시설 선택:
