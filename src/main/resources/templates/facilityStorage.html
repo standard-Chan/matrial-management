@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Storage 관리</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>📦 저장소 목록</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>저장소 ID</th>
+        <th>저장소 이름</th>
+        <th>시설 이름</th>
+        <th>시설 주소</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="storage : ${storages}">
+        <td th:text="${storage.id}"></td>
+        <td th:text="${storage.name}"></td>
+        <td th:text="${storage.facility.name}"></td>
+        <td th:text="${storage.facility.address}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<hr/>
+
+<h2>🏢 새로운 Facility 등록</h2>
+<form th:action="@{/facility-storages/facilities}" method="post" th:object="${newFacility}">
+    <label>이름: <input type="text" th:field="*{name}" required/></label><br/>
+    <label>주소: <input type="text" th:field="*{address}" required/></label><br/>
+    <button type="submit">Facility 저장</button>
+</form>
+
+<hr/>
+
+<h2>📦 새로운 Storage 등록</h2>
+<form th:action="@{/facility-storages/storages}" method="post" th:object="${newStorage}">
+    <label>이름: <input type="text" th:field="*{name}" required/></label><br/>
+    <label>시설 선택:
+        <select th:field="*{facility}" required>
+            <option th:each="f : ${facilities}" th:value="${f.id}" th:text="${f.name + ' (' + f.address + ')'}"></option>
+        </select>
+    </label><br/>
+    <button type="submit">Storage 저장</button>
+</form>
+
+</body>
+</html>
