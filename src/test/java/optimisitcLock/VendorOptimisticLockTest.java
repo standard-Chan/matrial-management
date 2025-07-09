@@ -1,7 +1,7 @@
 package optimisitcLock;
 
 import com.springFramework.mm.MaterialManagerApplication;
-import com.springFramework.mm.domain.Vendor;
+import com.springFramework.mm.domain.vendor.Vendor;
 import com.springFramework.mm.dto.vendor.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
 import com.springFramework.mm.repository.VendorRepository;

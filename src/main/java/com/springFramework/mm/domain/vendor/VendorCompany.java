@@ -1,10 +1,9 @@
-package com.springFramework.mm.domain;
+package com.springFramework.mm.domain.vendor;
 
 import com.springFramework.mm.enums.AccountCode;
 import com.springFramework.mm.enums.PaymentTermCode;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Type;
 
 @Getter
 @Entity

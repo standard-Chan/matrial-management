@@ -1,7 +1,7 @@
 package com.springFramework.mm.dto.vendor;
 
-import com.springFramework.mm.domain.Vendor;
-import com.springFramework.mm.domain.VendorCompany;
+import com.springFramework.mm.domain.vendor.Vendor;
+import com.springFramework.mm.domain.vendor.VendorCompany;
 import com.springFramework.mm.enums.AccountCode;
 import com.springFramework.mm.enums.PaymentTermCode;
 import lombok.*;
