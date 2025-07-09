@@ -3,7 +3,6 @@ package com.springFramework.mm.domain.purchaseOrder;
 import com.springFramework.mm.domain.vendor.Vendor;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;

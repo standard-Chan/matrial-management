@@ -6,7 +6,7 @@ import com.springFramework.mm.dto.vendor.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
 import com.springFramework.mm.enums.ErrorCode;
 import com.springFramework.mm.exception.vendor.VendorException;
-import com.springFramework.mm.repository.VendorRepository;
+import com.springFramework.mm.repository.vendor.VendorRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;

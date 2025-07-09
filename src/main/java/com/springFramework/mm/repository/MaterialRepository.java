@@ -1,9 +1,9 @@
 package com.springFramework.mm.repository;
 
-import com.springFramework.mm.domain.vendor.VendorPurchasing;
+import com.springFramework.mm.domain.Material;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VendorPurchasingRepository extends JpaRepository<VendorPurchasing, Long> {
+public interface MaterialRepository extends JpaRepository<Material, Long> {
 }

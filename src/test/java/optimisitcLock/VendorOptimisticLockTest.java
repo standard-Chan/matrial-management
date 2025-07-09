@@ -4,7 +4,7 @@ import com.springFramework.mm.MaterialManagerApplication;
 import com.springFramework.mm.domain.vendor.Vendor;
 import com.springFramework.mm.dto.vendor.VendorCreationRequest;
 import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
-import com.springFramework.mm.repository.VendorRepository;
+import com.springFramework.mm.repository.vendor.VendorRepository;
 import com.springFramework.mm.service.VendorService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

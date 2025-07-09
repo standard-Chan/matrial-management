@@ -1,4 +1,4 @@
-package com.springFramework.mm.repository;
+package com.springFramework.mm.repository.vendor;
 
 import com.springFramework.mm.domain.vendor.Vendor;
 import org.springframework.data.jpa.repository.JpaRepository;
