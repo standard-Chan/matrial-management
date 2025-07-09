@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Material 관리</title>
+    <meta charset="UTF-8">
+    <script>
+        function addRow() {
+            const tbody = document.getElementById("input-rows");
+            const index = tbody.children.length;
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td></td>
+                <td><input type="text" name="materials[${index}].name" required /></td>
+                <td><select name="materials[${index}].baseUnit">
+                        <option value="">단위 선택</option>
+                        <option value="EA">EA</option>
+                        <option value="BOX">BOX</option>
+                        <option value="ROLL">ROLL</option>
+                        <option value="KG">KG</option>
+                        <option value="G">G</option>
+                        <option value="MG">MG</option>
+                        <option value="L">L</option>
+                        <option value="ML">ML</option>
+                        <option value="M">M</option>
+                        <option value="MM">MM</option>
+                        <option value="CM">CM</option>
+                        <option value="SET">SET</option>
+                        <option value="PACK">PACK</option>
+                </select></td>
+                <td><input type="number" name="materials[${index}].price" required /></td>
+            `;
+            tbody.appendChild(row);
+        }
+    </script>
+</head>
+<body>
+<h1>Material 목록</h1>
+<!-- JS로 입력 row 추가 -->
+<form th:action="@{/materials/bulk}" method="post">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>이름</th>
+            <th>단위</th>
+            <th>단가</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="material : ${materials}">
+            <td th:text="${material.id}"></td>
+            <td th:text="${material.name}"></td>
+            <td th:text="${material.baseUnit}"></td>
+            <td th:text="${material.price}"></td>
+        </tr>
+        </tbody>
+        <tbody id="input-rows"></tbody>
+    </table>
+    <br/>
+    <button type="submit">저장</button>
+</form>
+
+<br/>
+<button type="button" onclick="addRow()">추가</button>
+
+
+
+
+</body>
+</html>

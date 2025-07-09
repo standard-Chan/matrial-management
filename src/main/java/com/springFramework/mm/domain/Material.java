@@ -1,5 +1,6 @@
 package com.springframework.mm.domain;
 
+import com.springframework.mm.enums.QuantityUnit;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +17,7 @@ public class Material {
 
     private String name;
 
-    private String baseUnit; // 단위
+    private QuantityUnit baseUnit; // 단위
 
     private Long price; // 단가
 
