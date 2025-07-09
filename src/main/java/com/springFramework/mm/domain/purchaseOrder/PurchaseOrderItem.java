@@ -7,7 +7,7 @@ import com.springframework.mm.exception.vendorOrder.VendorOrderItemException;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -28,7 +28,7 @@ public class PurchaseOrderItem {
 
     private Long quantity;
 
-    private LocalDateTime deliveryDate;  // 납품 예정일
+    private LocalDate deliveryDate;  // 납품 예정일
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storage_id")

@@ -34,7 +34,7 @@
             });
 
             row.innerHTML = `
-                <td>${itemIndex + 1}</td>
+                <td><input name="items[${itemIndex}].itemNo" value="${itemIndex + 1}" readonly/></td>
                 <td><select name="items[${itemIndex}].materialId" onchange="updateMaterialInfo(this, ${itemIndex})">${materialOptions}</select></td>
                 <td><span id="matName${itemIndex}"></span></td>
                 <td><input type="number" name="items[${itemIndex}].quantity" onchange="updateCost(${itemIndex})" required></td>
@@ -72,11 +72,11 @@
 <body>
 <h1>구매 오더 생성</h1>
 
-<form th:action="@{/purchase-orders/save}" method="post">
+<form th:action="@{/purchase-orders}" method="post">
     <fieldset>
         <legend>구매 오더 헤더</legend>
         <label>주문일자:
-            <input type="datetime-local" name="purchaseOrderHeader.orderDate" required>
+            <input type="date" name="purchaseOrderHeader.orderDate" required>
         </label>
         <label>구매처:
             <select name="purchaseOrderHeader.vendorId" required>

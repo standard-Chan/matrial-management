@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -18,7 +19,7 @@ public class PurchaseOrderHeader {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime orderDate; // 주문 일자
+    private LocalDate orderDate; // 주문 일자
 
     @CreatedDate
     @Column(updatable = false)
