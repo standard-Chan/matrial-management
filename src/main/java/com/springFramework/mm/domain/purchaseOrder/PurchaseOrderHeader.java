@@ -1,6 +1,6 @@
-package com.springFramework.mm.domain.purchaseOrder;
+package com.springframework.mm.domain.purchaseOrder;
 
-import com.springFramework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.Vendor;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

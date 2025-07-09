@@ -1,6 +1,6 @@
-package com.springFramework.mm.domain.vendor;
+package com.springframework.mm.domain.vendor;
 
-import com.springFramework.mm.enums.TaxCode;
+import com.springframework.mm.enums.TaxCode;
 import jakarta.persistence.*;
 import lombok.*;
 

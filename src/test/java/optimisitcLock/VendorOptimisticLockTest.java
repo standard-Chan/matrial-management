@@ -1,11 +1,11 @@
 package optimisitcLock;
 
-import com.springFramework.mm.MaterialManagerApplication;
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.dto.vendor.VendorCreationRequest;
-import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
-import com.springFramework.mm.repository.vendor.VendorRepository;
-import com.springFramework.mm.service.VendorService;
+import com.springframework.mm.MaterialManagerApplication;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.dto.vendor.VendorCreationRequest;
+import com.springframework.mm.dto.vendor.VendorUpdateRequest;
+import com.springframework.mm.repository.vendor.VendorRepository;
+import com.springframework.mm.service.VendorService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.AfterEach;
@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.springFramework.mm.enums.VendorGroupCode.DOMESTIC;
+import static com.springframework.mm.enums.VendorGroupCode.DOMESTIC;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

@@ -1,9 +1,9 @@
-package com.springFramework.mm.dto.vendor;
+package com.springframework.mm.dto.vendor;
 
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.domain.vendor.VendorCompany;
-import com.springFramework.mm.enums.AccountCode;
-import com.springFramework.mm.enums.PaymentTermCode;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.VendorCompany;
+import com.springframework.mm.enums.AccountCode;
+import com.springframework.mm.enums.PaymentTermCode;
 import lombok.*;
 
 @Setter

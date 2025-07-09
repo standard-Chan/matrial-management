@@ -4,7 +4,7 @@ plugins {
     id("java")
 }
 
-group = "com.springFramework.mm"
+group = "com.springframework.mm"
 version = "1.0-SNAPSHOT"
 
 repositories {

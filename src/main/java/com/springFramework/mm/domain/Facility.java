@@ -1,9 +1,6 @@
-package com.springFramework.mm.domain;
+package com.springframework.mm.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -20,4 +17,6 @@ public class Facility {
     private String name;
     private String address;
 
+    @Version
+    private Long version;
 }

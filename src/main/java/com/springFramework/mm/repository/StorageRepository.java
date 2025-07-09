@@ -1,6 +1,6 @@
-package com.springFramework.mm.repository;
+package com.springframework.mm.repository;
 
-import com.springFramework.mm.domain.Storage;
+import com.springframework.mm.domain.Storage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

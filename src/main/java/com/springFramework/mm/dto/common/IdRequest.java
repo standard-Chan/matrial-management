@@ -1,4 +1,4 @@
-package com.springFramework.mm.dto.common;
+package com.springframework.mm.dto.common;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

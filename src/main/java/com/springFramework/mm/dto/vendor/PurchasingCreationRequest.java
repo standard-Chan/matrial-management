@@ -1,8 +1,8 @@
-package com.springFramework.mm.dto.vendor;
+package com.springframework.mm.dto.vendor;
 
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.domain.vendor.VendorPurchasing;
-import com.springFramework.mm.enums.TaxCode;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.VendorPurchasing;
+import com.springframework.mm.enums.TaxCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

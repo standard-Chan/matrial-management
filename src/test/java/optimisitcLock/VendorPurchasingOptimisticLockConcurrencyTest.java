@@ -1,16 +1,16 @@
 package optimisitcLock;
 
-import com.springFramework.mm.MaterialManagerApplication;
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.domain.vendor.VendorPurchasing;
-import com.springFramework.mm.dto.vendor.PurchasingUpdateRequest;
-import com.springFramework.mm.enums.ErrorCode;
-import com.springFramework.mm.enums.TaxCode;
-import com.springFramework.mm.enums.VendorGroupCode;
-import com.springFramework.mm.exception.vendor.VendorException;
-import com.springFramework.mm.repository.vendor.VendorPurchasingRepository;
-import com.springFramework.mm.repository.vendor.VendorRepository;
-import com.springFramework.mm.service.VendorPurchasingService;
+import com.springframework.mm.MaterialManagerApplication;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.VendorPurchasing;
+import com.springframework.mm.dto.vendor.PurchasingUpdateRequest;
+import com.springframework.mm.enums.ErrorCode;
+import com.springframework.mm.enums.TaxCode;
+import com.springframework.mm.enums.VendorGroupCode;
+import com.springframework.mm.exception.vendor.VendorException;
+import com.springframework.mm.repository.vendor.VendorPurchasingRepository;
+import com.springframework.mm.repository.vendor.VendorRepository;
+import com.springframework.mm.service.VendorPurchasingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

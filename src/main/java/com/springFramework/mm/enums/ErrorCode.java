@@ -1,4 +1,4 @@
-package com.springFramework.mm.enums;
+package com.springframework.mm.enums;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

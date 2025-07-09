@@ -1,6 +1,6 @@
-package com.springFramework.mm.dto.vendor;
+package com.springframework.mm.dto.vendor;
 
-import com.springFramework.mm.enums.VendorGroupCode;
+import com.springframework.mm.enums.VendorGroupCode;
 import lombok.*;
 
 @Getter

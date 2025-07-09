@@ -1,9 +1,9 @@
-package com.springFramework.mm.controller.api.vendor;
+package com.springframework.mm.controller.api.vendor;
 
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.dto.common.IdRequest;
-import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
-import com.springFramework.mm.service.VendorService;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.dto.common.IdRequest;
+import com.springframework.mm.dto.vendor.VendorUpdateRequest;
+import com.springframework.mm.service.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

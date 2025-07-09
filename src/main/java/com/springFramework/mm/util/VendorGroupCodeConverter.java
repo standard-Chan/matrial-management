@@ -1,6 +1,6 @@
-package com.springFramework.mm.util;
+package com.springframework.mm.util;
 
-import com.springFramework.mm.enums.VendorGroupCode;
+import com.springframework.mm.enums.VendorGroupCode;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

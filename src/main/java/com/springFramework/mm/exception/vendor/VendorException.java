@@ -1,7 +1,7 @@
-package com.springFramework.mm.exception.vendor;
+package com.springframework.mm.exception.vendor;
 
-import com.springFramework.mm.enums.ErrorCode;
-import com.springFramework.mm.exception.ServerException;
+import com.springframework.mm.enums.ErrorCode;
+import com.springframework.mm.exception.ServerException;
 
 public class VendorException extends ServerException {
     public VendorException(ErrorCode errorCode) {

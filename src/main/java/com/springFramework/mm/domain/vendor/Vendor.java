@@ -1,7 +1,7 @@
-package com.springFramework.mm.domain.vendor;
+package com.springframework.mm.domain.vendor;
 
-import com.springFramework.mm.enums.VendorGroupCode;
-import com.springFramework.mm.util.VendorGroupCodeConverter;
+import com.springframework.mm.enums.VendorGroupCode;
+import com.springframework.mm.util.VendorGroupCodeConverter;
 import jakarta.persistence.*;
 import lombok.*;
 

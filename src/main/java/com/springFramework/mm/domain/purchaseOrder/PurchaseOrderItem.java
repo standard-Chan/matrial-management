@@ -1,9 +1,9 @@
-package com.springFramework.mm.domain.purchaseOrder;
+package com.springframework.mm.domain.purchaseOrder;
 
-import com.springFramework.mm.domain.Material;
-import com.springFramework.mm.domain.Storage;
-import com.springFramework.mm.enums.ErrorCode;
-import com.springFramework.mm.exception.vendorOrder.VendorOrderItemException;
+import com.springframework.mm.domain.Material;
+import com.springframework.mm.domain.Storage;
+import com.springframework.mm.enums.ErrorCode;
+import com.springframework.mm.exception.vendorOrder.VendorOrderItemException;
 import jakarta.persistence.*;
 import lombok.*;
 

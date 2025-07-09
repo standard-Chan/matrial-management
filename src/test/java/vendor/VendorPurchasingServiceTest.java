@@ -1,14 +1,14 @@
 package vendor;
 
-import com.springFramework.mm.MaterialManagerApplication;
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.domain.vendor.VendorPurchasing;
-import com.springFramework.mm.dto.common.IdRequest;
-import com.springFramework.mm.dto.vendor.PurchasingCreationRequest;
-import com.springFramework.mm.dto.vendor.PurchasingUpdateRequest;
-import com.springFramework.mm.repository.vendor.VendorPurchasingRepository;
-import com.springFramework.mm.repository.vendor.VendorRepository;
-import com.springFramework.mm.service.VendorPurchasingService;
+import com.springframework.mm.MaterialManagerApplication;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.VendorPurchasing;
+import com.springframework.mm.dto.common.IdRequest;
+import com.springframework.mm.dto.vendor.PurchasingCreationRequest;
+import com.springframework.mm.dto.vendor.PurchasingUpdateRequest;
+import com.springframework.mm.repository.vendor.VendorPurchasingRepository;
+import com.springframework.mm.repository.vendor.VendorRepository;
+import com.springframework.mm.service.VendorPurchasingService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,9 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static com.springFramework.mm.enums.TaxCode.V1;
-import static com.springFramework.mm.enums.TaxCode.V2;
-import static com.springFramework.mm.enums.VendorGroupCode.DOMESTIC;
+import static com.springframework.mm.enums.TaxCode.V1;
+import static com.springframework.mm.enums.TaxCode.V2;
+import static com.springframework.mm.enums.VendorGroupCode.DOMESTIC;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest(classes = MaterialManagerApplication.class)

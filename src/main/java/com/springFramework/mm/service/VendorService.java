@@ -1,12 +1,12 @@
-package com.springFramework.mm.service;
+package com.springframework.mm.service;
 
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.dto.common.IdRequest;
-import com.springFramework.mm.dto.vendor.VendorCreationRequest;
-import com.springFramework.mm.dto.vendor.VendorUpdateRequest;
-import com.springFramework.mm.enums.ErrorCode;
-import com.springFramework.mm.exception.vendor.VendorException;
-import com.springFramework.mm.repository.vendor.VendorRepository;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.dto.common.IdRequest;
+import com.springframework.mm.dto.vendor.VendorCreationRequest;
+import com.springframework.mm.dto.vendor.VendorUpdateRequest;
+import com.springframework.mm.enums.ErrorCode;
+import com.springframework.mm.exception.vendor.VendorException;
+import com.springframework.mm.repository.vendor.VendorRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;

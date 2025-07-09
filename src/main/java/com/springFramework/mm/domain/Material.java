@@ -1,9 +1,6 @@
-package com.springFramework.mm.domain;
+package com.springframework.mm.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -22,4 +19,7 @@ public class Material {
     private String baseUnit; // 단위
 
     private Long price; // 단가
+
+    @Version
+    private Long version;
 }

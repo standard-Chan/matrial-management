@@ -1,14 +1,14 @@
 package vendor;
 
-import com.springFramework.mm.MaterialManagerApplication;
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.domain.vendor.VendorCompany;
-import com.springFramework.mm.dto.common.IdRequest;
-import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
-import com.springFramework.mm.dto.vendor.CompanyUpdateRequest;
-import com.springFramework.mm.repository.vendor.VendorCompanyRepository;
-import com.springFramework.mm.repository.vendor.VendorRepository;
-import com.springFramework.mm.service.VendorCompanyService;
+import com.springframework.mm.MaterialManagerApplication;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.VendorCompany;
+import com.springframework.mm.dto.common.IdRequest;
+import com.springframework.mm.dto.vendor.CompanyCreationRequest;
+import com.springframework.mm.dto.vendor.CompanyUpdateRequest;
+import com.springframework.mm.repository.vendor.VendorCompanyRepository;
+import com.springframework.mm.repository.vendor.VendorRepository;
+import com.springframework.mm.service.VendorCompanyService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static com.springFramework.mm.enums.AccountCode.PAYABLE_DOMESTIC;
-import static com.springFramework.mm.enums.AccountCode.PAYABLE_IMPORT;
-import static com.springFramework.mm.enums.PaymentTermCode.M001;
-import static com.springFramework.mm.enums.PaymentTermCode.M002;
-import static com.springFramework.mm.enums.VendorGroupCode.DOMESTIC;
+import static com.springframework.mm.enums.AccountCode.PAYABLE_DOMESTIC;
+import static com.springframework.mm.enums.AccountCode.PAYABLE_IMPORT;
+import static com.springframework.mm.enums.PaymentTermCode.M001;
+import static com.springframework.mm.enums.PaymentTermCode.M002;
+import static com.springframework.mm.enums.VendorGroupCode.DOMESTIC;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest(classes = MaterialManagerApplication.class)

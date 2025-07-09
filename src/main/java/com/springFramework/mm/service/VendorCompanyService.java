@@ -1,15 +1,15 @@
-package com.springFramework.mm.service;
+package com.springframework.mm.service;
 
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.domain.vendor.VendorCompany;
-import com.springFramework.mm.dto.common.IdRequest;
-import com.springFramework.mm.dto.vendor.CompanyCreationRequest;
-import com.springFramework.mm.dto.vendor.CompanyUpdateRequest;
-import com.springFramework.mm.enums.ErrorCode;
-import com.springFramework.mm.exception.vendor.VendorCompanyException;
-import com.springFramework.mm.exception.vendor.VendorException;
-import com.springFramework.mm.repository.vendor.VendorCompanyRepository;
-import com.springFramework.mm.repository.vendor.VendorRepository;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.VendorCompany;
+import com.springframework.mm.dto.common.IdRequest;
+import com.springframework.mm.dto.vendor.CompanyCreationRequest;
+import com.springframework.mm.dto.vendor.CompanyUpdateRequest;
+import com.springframework.mm.enums.ErrorCode;
+import com.springframework.mm.exception.vendor.VendorCompanyException;
+import com.springframework.mm.exception.vendor.VendorException;
+import com.springframework.mm.repository.vendor.VendorCompanyRepository;
+import com.springframework.mm.repository.vendor.VendorRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.OptimisticLockingFailureException;

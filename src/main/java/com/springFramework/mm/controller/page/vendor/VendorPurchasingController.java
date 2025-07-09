@@ -1,7 +1,7 @@
-package com.springFramework.mm.controller.page.vendor;
+package com.springframework.mm.controller.page.vendor;
 
-import com.springFramework.mm.dto.vendor.PurchasingCreationRequest;
-import com.springFramework.mm.service.VendorPurchasingService;
+import com.springframework.mm.dto.vendor.PurchasingCreationRequest;
+import com.springframework.mm.service.VendorPurchasingService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
-package com.springFramework.mm.repository.purchasingOrder;
+package com.springframework.mm.repository.purchasingOrder;
 
-import com.springFramework.mm.domain.purchaseOrder.PurchaseOrderHeader;
+import com.springframework.mm.domain.purchaseOrder.PurchaseOrderHeader;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

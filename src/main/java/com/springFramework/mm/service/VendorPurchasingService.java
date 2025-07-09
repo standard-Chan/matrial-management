@@ -1,15 +1,15 @@
-package com.springFramework.mm.service;
+package com.springframework.mm.service;
 
-import com.springFramework.mm.domain.vendor.Vendor;
-import com.springFramework.mm.domain.vendor.VendorPurchasing;
-import com.springFramework.mm.dto.common.IdRequest;
-import com.springFramework.mm.dto.vendor.PurchasingCreationRequest;
-import com.springFramework.mm.dto.vendor.PurchasingUpdateRequest;
-import com.springFramework.mm.enums.ErrorCode;
-import com.springFramework.mm.exception.vendor.VendorException;
-import com.springFramework.mm.exception.vendor.VendorPurchasingException;
-import com.springFramework.mm.repository.vendor.VendorPurchasingRepository;
-import com.springFramework.mm.repository.vendor.VendorRepository;
+import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.VendorPurchasing;
+import com.springframework.mm.dto.common.IdRequest;
+import com.springframework.mm.dto.vendor.PurchasingCreationRequest;
+import com.springframework.mm.dto.vendor.PurchasingUpdateRequest;
+import com.springframework.mm.enums.ErrorCode;
+import com.springframework.mm.exception.vendor.VendorException;
+import com.springframework.mm.exception.vendor.VendorPurchasingException;
+import com.springframework.mm.repository.vendor.VendorPurchasingRepository;
+import com.springframework.mm.repository.vendor.VendorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;

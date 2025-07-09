@@ -1,7 +1,7 @@
-package com.springFramework.mm.domain.vendor;
+package com.springframework.mm.domain.vendor;
 
-import com.springFramework.mm.enums.AccountCode;
-import com.springFramework.mm.enums.PaymentTermCode;
+import com.springframework.mm.enums.AccountCode;
+import com.springframework.mm.enums.PaymentTermCode;
 import jakarta.persistence.*;
 import lombok.*;
 

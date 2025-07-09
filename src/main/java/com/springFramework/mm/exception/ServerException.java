@@ -1,6 +1,6 @@
-package com.springFramework.mm.exception;
+package com.springframework.mm.exception;
 
-import com.springFramework.mm.enums.ErrorCode;
+import com.springframework.mm.enums.ErrorCode;
 
 public class ServerException extends RuntimeException {
     private final ErrorCode errorCode;
