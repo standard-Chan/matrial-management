@@ -10,6 +10,8 @@ import com.springframework.mm.dto.purchaseOrder.PurchaseOrderHeaderCreationReque
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderItemCreationRequest;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderItemUpdateRequest;
 import com.springframework.mm.enums.ErrorCode;
+import com.springframework.mm.exception.MaterialException;
+import com.springframework.mm.exception.StorageException;
 import com.springframework.mm.exception.purchaseOrder.PurchaseOrderItemException;
 import com.springframework.mm.exception.vendor.VendorCompanyException;
 import com.springframework.mm.repository.MaterialRepository;
@@ -104,11 +106,10 @@ public class PurchaseOrderService {
         for (PurchaseOrderItemUpdateRequest request : requests) {
             PurchaseOrderItem item = itemRepository.findById(request.getId())
                     .orElseThrow(() -> new PurchaseOrderItemException(ErrorCode.NOT_FOUND_PURCHASE_ORDER_ITEM));
-
             Material material = materialRepository.findById(request.getMaterialId())
-                    .orElseThrow(() -> new EntityNotFoundException("Material not found: " + request.getMaterialId()));
+                    .orElseThrow(() -> new MaterialException(ErrorCode.NOT_FOUND_MATERIAL));
             Storage storage = storageRepository.findById(request.getStorageId())
-                    .orElseThrow(() -> new EntityNotFoundException("Storage not found: " + request.getStorageId()));
+                    .orElseThrow(() -> new StorageException(ErrorCode.NOT_FOUND_STORAGE));
 
             item.setQuantity(request.getQuantity());
             item.setDeliveryDate(request.getDeliveryDate());
