@@ -5,6 +5,7 @@ import com.springframework.mm.domain.Storage;
 import com.springframework.mm.domain.purchaseOrder.PurchaseOrderHeader;
 import com.springframework.mm.domain.purchaseOrder.PurchaseOrderItem;
 import com.springframework.mm.domain.vendor.VendorCompany;
+import com.springframework.mm.dto.common.IdRequest;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderCreationRequest;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderHeaderCreationRequest;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderItemCreationRequest;
@@ -122,5 +123,14 @@ public class PurchaseOrderService {
         item.setStorage(storage);
 
         return itemRepository.save(item);
+    }
+
+    @Transactional
+    public void deletePurchaseOrderItems(List<IdRequest> requests) {
+        List<Long> ids = requests.stream()
+                .map(IdRequest::getId)
+                .toList();
+
+        itemRepository.deleteAllById(ids);
     }
 }

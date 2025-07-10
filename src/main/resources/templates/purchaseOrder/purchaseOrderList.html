@@ -38,6 +38,35 @@
                 alert("수정 실패. 다시 시도해주세요.");
             }
         }
+
+        /** 삭제 */
+            async function deleteSelectedItemRows() {
+            const selectedRows = document.querySelectorAll("input[name='selectItem']:checked");
+
+            const dataList = Array.from(selectedRows).map(checkbox => {
+            const row = checkbox.closest("tr");
+            return { id: row.dataset.id };
+        });
+
+            if (dataList.length === 0) {
+            alert("삭제할 항목을 선택해주세요.");
+            return;
+        }
+
+            const response = await fetch('/api/v1/purchase-orders', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataList)
+        });
+
+            if (response.ok) {
+            alert("선택된 항목이 삭제되었습니다.");
+            window.location.reload();
+        } else {
+            alert("삭제 실패. 다시 시도해주세요.");
+        }
+        }
+
     </script>
 </head>
 <body>
@@ -67,6 +96,8 @@
 <br/>
 <h2>구매 오더 항목 목록</h2>
 <button type="button" onclick="submitSelectedItems()">선택 수정하기</button>
+<button type="button" onclick="deleteSelectedItemRows()">선택 삭제하기</button>
+
 
 <table border="1">
     <thead>
