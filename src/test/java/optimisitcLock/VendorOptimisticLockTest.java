@@ -5,7 +5,7 @@ import com.springframework.mm.domain.vendor.Vendor;
 import com.springframework.mm.dto.vendor.VendorCreationRequest;
 import com.springframework.mm.dto.vendor.VendorUpdateRequest;
 import com.springframework.mm.repository.vendor.VendorRepository;
-import com.springframework.mm.service.VendorService;
+import com.springframework.mm.service.vendor.VendorService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.AfterEach;

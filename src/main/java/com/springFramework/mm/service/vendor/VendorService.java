@@ -1,4 +1,4 @@
-package com.springframework.mm.service;
+package com.springframework.mm.service.vendor;
 
 import com.springframework.mm.domain.vendor.Vendor;
 import com.springframework.mm.dto.common.IdRequest;

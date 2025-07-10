@@ -2,7 +2,7 @@ package com.springframework.mm.controller.api.vendor;
 
 import com.springframework.mm.dto.common.IdRequest;
 import com.springframework.mm.dto.vendor.CompanyUpdateRequest;
-import com.springframework.mm.service.VendorCompanyService;
+import com.springframework.mm.service.vendor.VendorCompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

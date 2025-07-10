@@ -38,6 +38,9 @@ public class PurchaseOrderItem {
     @JoinColumn(name = "purchaseOrderHeader_id")
     private PurchaseOrderHeader purchaseOrderHeader;
 
+    @Version
+    private Long version;
+
     /** 수량이 0 이하 인지 확인 */
     public void checkQuantity() {
         if (this.quantity < 1)

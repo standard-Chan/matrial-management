@@ -8,7 +8,7 @@ import com.springframework.mm.dto.vendor.PurchasingCreationRequest;
 import com.springframework.mm.dto.vendor.PurchasingUpdateRequest;
 import com.springframework.mm.repository.vendor.VendorPurchasingRepository;
 import com.springframework.mm.repository.vendor.VendorRepository;
-import com.springframework.mm.service.VendorPurchasingService;
+import com.springframework.mm.service.vendor.VendorPurchasingService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.springframework.mm.controller.page.vendor;
 
 import com.springframework.mm.dto.vendor.CompanyCreationRequest;
-import com.springframework.mm.service.VendorCompanyService;
+import com.springframework.mm.service.vendor.VendorCompanyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

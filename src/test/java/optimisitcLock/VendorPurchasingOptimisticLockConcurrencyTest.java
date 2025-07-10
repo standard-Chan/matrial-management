@@ -10,7 +10,7 @@ import com.springframework.mm.enums.VendorGroupCode;
 import com.springframework.mm.exception.vendor.VendorException;
 import com.springframework.mm.repository.vendor.VendorPurchasingRepository;
 import com.springframework.mm.repository.vendor.VendorRepository;
-import com.springframework.mm.service.VendorPurchasingService;
+import com.springframework.mm.service.vendor.VendorPurchasingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

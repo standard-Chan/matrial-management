@@ -30,4 +30,7 @@ public class PurchaseOrderHeader {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vendor_id")
     private VendorCompany vendorCompany;
+
+    @Version
+    private Long version;
 }

@@ -21,9 +21,11 @@ import com.springframework.mm.repository.purchasingOrder.PurchaseOrderHeaderRepo
 import com.springframework.mm.repository.purchasingOrder.PurchaseOrderItemRepository;
 import com.springframework.mm.repository.vendor.VendorCompanyRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.OptimisticLockException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -105,16 +107,24 @@ public class PurchaseOrderService {
     public List<PurchaseOrderItem> updatePurchaseOrderItems(List<PurchaseOrderItemUpdateRequest> requests) {
         log.info("구매 오더 품목 '{}'개 수정 요청 수신.", requests.size());
 
-        return requests.stream().map(this::updatePurchaseOrderItem).toList();
+        return requests.stream().map(request -> {
+            try {
+                return updatePurchaseOrderItem(request);
+            } catch (OptimisticLockingFailureException e) {
+                log.warn("구매 오더 품목 수정 실패 - 낙관적 락 충돌 발생: 구매 오더 Id: {}", request.getId());
+                throw new PurchaseOrderItemException(ErrorCode.CONFLICT_OPTIMISTIC_LOCK);
+            }
+        }).toList();
     }
 
     @Transactional
+    /** 비관적 락을 사용하여 데이터 가져오기 & 업데이터 */
     public PurchaseOrderItem updatePurchaseOrderItem(PurchaseOrderItemUpdateRequest request) {
-        PurchaseOrderItem item = itemRepository.findById(request.getId())
+        PurchaseOrderItem item = itemRepository.findByIdWithOptimisticLock(request.getId())
                 .orElseThrow(() -> new PurchaseOrderItemException(ErrorCode.NOT_FOUND_PURCHASE_ORDER_ITEM));
-        Material material = materialRepository.findById(request.getMaterialId())
+        Material material = materialRepository.findByIdWithOptimisticLock(request.getMaterialId())
                 .orElseThrow(() -> new MaterialException(ErrorCode.NOT_FOUND_MATERIAL));
-        Storage storage = storageRepository.findById(request.getStorageId())
+        Storage storage = storageRepository.findByIdWithOptimisticLock(request.getStorageId())
                 .orElseThrow(() -> new StorageException(ErrorCode.NOT_FOUND_STORAGE));
 
         item.setQuantity(request.getQuantity());
