@@ -54,6 +54,9 @@ public class PurchaseOrderService {
 
     @Transactional
     protected PurchaseOrderItem createPurchaseOrderItem(PurchaseOrderItemCreationRequest request, PurchaseOrderHeader purchaseOrderHeader) {
+        // 수량이 올바른지 확인
+        request.checkQuantity();
+
         // 연관 데이터 가져오기
         Material material = materialRepository.getMaterialById(request.getMaterialId()).orElseThrow(() -> new EntityNotFoundException());
         Storage storage = storageRepository.getStorageById(request.getStorageId()).orElseThrow(() -> new EntityNotFoundException());

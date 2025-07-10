@@ -8,7 +8,6 @@
 ### 요청 처리
 - GET, POST : SSR 방식으로 HTML 페이지를 렌더링한 후 반환합니다.
 - PUT, DELETE : REST API 요청으로 데이터를 서버에 전달합니다.
-ㅎ
 
 
 ---
@@ -20,6 +19,11 @@
 
 >[구매 프로세스 설명.md](docs/%EA%B5%AC%EB%A7%A4%20%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EC%84%A4%EB%AA%85.md)
 
+## 기능 설명
 
+
+
+
+## UX 개선 사항
 [UX개선사항.md](docs/UX%EA%B0%9C%EC%84%A0%EC%82%AC%ED%95%AD.md)
 
