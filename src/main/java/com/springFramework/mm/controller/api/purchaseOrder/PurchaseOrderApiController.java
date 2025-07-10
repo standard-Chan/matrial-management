@@ -1,5 +1,6 @@
 package com.springframework.mm.controller.api.purchaseOrder;
 
+import com.springframework.mm.domain.purchaseOrder.PurchaseOrderItem;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderItemUpdateRequest;
 import com.springframework.mm.service.PurchaseOrderService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,9 @@ public class PurchaseOrderApiController {
     private final PurchaseOrderService purchaseOrderService;
 
     @PutMapping
-    public ResponseEntity<Void> updateItems(@RequestBody List<PurchaseOrderItemUpdateRequest> requests) {
-        purchaseOrderService.updatePurchaseOrderItems(requests);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<PurchaseOrderItem>> updateItems(@RequestBody List<PurchaseOrderItemUpdateRequest> requests) {
+        List<PurchaseOrderItem> response = purchaseOrderService.updatePurchaseOrderItems(requests);
+        return ResponseEntity.ok(response);
     }
 }
 

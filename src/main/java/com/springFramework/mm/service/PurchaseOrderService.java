@@ -101,22 +101,26 @@ public class PurchaseOrderService {
     }
 
     @Transactional
-    public void updatePurchaseOrderItems(List<PurchaseOrderItemUpdateRequest> requests) {
+    public List<PurchaseOrderItem> updatePurchaseOrderItems(List<PurchaseOrderItemUpdateRequest> requests) {
         log.info("구매 오더 품목 '{}'개 수정 요청 수신.", requests.size());
-        for (PurchaseOrderItemUpdateRequest request : requests) {
-            PurchaseOrderItem item = itemRepository.findById(request.getId())
-                    .orElseThrow(() -> new PurchaseOrderItemException(ErrorCode.NOT_FOUND_PURCHASE_ORDER_ITEM));
-            Material material = materialRepository.findById(request.getMaterialId())
-                    .orElseThrow(() -> new MaterialException(ErrorCode.NOT_FOUND_MATERIAL));
-            Storage storage = storageRepository.findById(request.getStorageId())
-                    .orElseThrow(() -> new StorageException(ErrorCode.NOT_FOUND_STORAGE));
 
-            item.setQuantity(request.getQuantity());
-            item.setDeliveryDate(request.getDeliveryDate());
-            item.setMaterial(material);
-            item.setStorage(storage);
-        }
-
+        return requests.stream().map(this::updatePurchaseOrderItem).toList();
     }
 
+    @Transactional
+    public PurchaseOrderItem updatePurchaseOrderItem(PurchaseOrderItemUpdateRequest request) {
+        PurchaseOrderItem item = itemRepository.findById(request.getId())
+                .orElseThrow(() -> new PurchaseOrderItemException(ErrorCode.NOT_FOUND_PURCHASE_ORDER_ITEM));
+        Material material = materialRepository.findById(request.getMaterialId())
+                .orElseThrow(() -> new MaterialException(ErrorCode.NOT_FOUND_MATERIAL));
+        Storage storage = storageRepository.findById(request.getStorageId())
+                .orElseThrow(() -> new StorageException(ErrorCode.NOT_FOUND_STORAGE));
+
+        item.setQuantity(request.getQuantity());
+        item.setDeliveryDate(request.getDeliveryDate());
+        item.setMaterial(material);
+        item.setStorage(storage);
+
+        return itemRepository.save(item);
+    }
 }
