@@ -44,6 +44,7 @@ public class PurchaseOrderController {
     @GetMapping
     public String showPurchaseOrders(Model model) {
         model.addAttribute("headers", purchaseOrderService.getAllHeaders());
+        model.addAttribute("items", purchaseOrderService.getAllItems());
         return "purchaseOrder/purchaseOrderList";
     }
 }

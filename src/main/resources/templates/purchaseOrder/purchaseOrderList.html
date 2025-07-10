@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>구매 오더 목록</title>
+    <title>구매 오더 전체 목록</title>
     <meta charset="UTF-8">
 </head>
 <body>
@@ -10,11 +10,11 @@
 <table border="1">
     <thead>
     <tr>
-        <th>구매오더 번호</th>
+        <th>ID</th>
         <th>주문일자</th>
         <th>생성시각</th>
-        <th>구매처 이름 (vendor.name)</th>
-        <th>회사 코드 (companyCode)</th>
+        <th>구매처 이름</th>
+        <th>회사 코드</th>
     </tr>
     </thead>
     <tbody>
@@ -24,6 +24,40 @@
         <td th:text="${header.createdAt}"></td>
         <td th:text="${header.vendorCompany.vendor.name}"></td>
         <td th:text="${header.vendorCompany.companyCode}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<h2>구매 오더 항목 목록</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>품목 번호</th>
+        <th>수량</th>
+        <th>납품 예정일</th>
+        <th>헤더 ID</th>
+        <th>자재명</th>
+        <th>단위</th>
+        <th>단가</th>
+        <th>저장소명</th>
+        <th>시설명</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.itemNo}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.deliveryDate}"></td>
+        <td th:text="${item.purchaseOrderHeader.id}"></td>
+        <td th:text="${item.material.name}"></td>
+        <td th:text="${item.material.baseUnit}"></td>
+        <td th:text="${item.material.price}"></td>
+        <td th:text="${item.storage.name}"></td>
+        <td th:text="${item.storage.facility.name}"></td>
     </tr>
     </tbody>
 </table>

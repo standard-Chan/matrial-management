@@ -4,14 +4,12 @@ import com.springframework.mm.domain.Material;
 import com.springframework.mm.domain.Storage;
 import com.springframework.mm.domain.purchaseOrder.PurchaseOrderHeader;
 import com.springframework.mm.domain.purchaseOrder.PurchaseOrderItem;
-import com.springframework.mm.domain.vendor.Vendor;
 import com.springframework.mm.domain.vendor.VendorCompany;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderCreationRequest;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderHeaderCreationRequest;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderItemCreationRequest;
 import com.springframework.mm.enums.ErrorCode;
 import com.springframework.mm.exception.vendor.VendorCompanyException;
-import com.springframework.mm.exception.vendor.VendorException;
 import com.springframework.mm.repository.MaterialRepository;
 import com.springframework.mm.repository.StorageRepository;
 import com.springframework.mm.repository.purchasingOrder.PurchaseOrderHeaderRepository;
@@ -29,11 +27,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PurchaseOrderService {
 
-    private final VendorRepository vendorRepository;
-    private final PurchaseOrderHeaderRepository purchaseOrderHeaderRepository;
+    private final PurchaseOrderHeaderRepository headerRepository;
+    private final PurchaseOrderItemRepository itemRepository;
     private final MaterialRepository materialRepository;
     private final StorageRepository storageRepository;
-    private final PurchaseOrderItemRepository purchaseOrderItemRepository;
     private final VendorCompanyRepository vendorCompanyRepository;
 
     /** 구매오더 헤더와 품목을 동시에 INSERT */
@@ -46,8 +43,8 @@ public class PurchaseOrderService {
         VendorCompany vendorCompany = vendorCompanyRepository.getVendorCompanyById(headerRequest.getVendorCompanyId())
                 .orElseThrow(() -> new VendorCompanyException(ErrorCode.NOT_FOUND_COMPANY));
         PurchaseOrderHeader header = headerRequest.toEntity(vendorCompany);
-        purchaseOrderHeaderRepository.save(header);
-        purchaseOrderHeaderRepository.flush(); // insert DB 반영
+        headerRepository.save(header);
+        headerRepository.flush(); // insert DB 반영
 
         // 추후에 bulk 연산으로 바꿔서 처리.
 
@@ -65,10 +62,14 @@ public class PurchaseOrderService {
         Material material = materialRepository.getMaterialById(request.getMaterialId()).orElseThrow(() -> new EntityNotFoundException());
         Storage storage = storageRepository.getStorageById(request.getStorageId()).orElseThrow(() -> new EntityNotFoundException());
 
-        return purchaseOrderItemRepository.save(request.toEntity(purchaseOrderHeader, material, storage));
+        return itemRepository.save(request.toEntity(purchaseOrderHeader, material, storage));
     }
 
     public List<PurchaseOrderHeader> getAllHeaders() {
-        return purchaseOrderHeaderRepository.findAllWithCompanyAndVendor();
+        return headerRepository.findAllWithCompanyAndVendor();
+    }
+
+    public List<PurchaseOrderItem> getAllItems() {
+        return itemRepository.findAllWithJoins();
     }
 }
