@@ -1,4 +1,4 @@
-package com.springframework.mm.controller.api;
+package com.springframework.mm.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;

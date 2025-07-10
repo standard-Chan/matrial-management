@@ -8,6 +8,7 @@ import com.springframework.mm.domain.vendor.VendorCompany;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderCreationRequest;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderHeaderCreationRequest;
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderItemCreationRequest;
+import com.springframework.mm.dto.purchaseOrder.PurchaseOrderItemUpdateRequest;
 import com.springframework.mm.enums.ErrorCode;
 import com.springframework.mm.exception.purchaseOrder.PurchaseOrderItemException;
 import com.springframework.mm.exception.vendor.VendorCompanyException;
@@ -96,4 +97,25 @@ public class PurchaseOrderService {
         log.debug("조회된 품목 개수: {}", result.size());
         return result;
     }
+
+    @Transactional
+    public void updatePurchaseOrderItems(List<PurchaseOrderItemUpdateRequest> requests) {
+        log.info("구매 오더 품목 '{}'개 수정 요청 수신.", requests.size());
+        for (PurchaseOrderItemUpdateRequest request : requests) {
+            PurchaseOrderItem item = itemRepository.findById(request.getId())
+                    .orElseThrow(() -> new PurchaseOrderItemException(ErrorCode.NOT_FOUND_PURCHASE_ORDER_ITEM));
+
+            Material material = materialRepository.findById(request.getMaterialId())
+                    .orElseThrow(() -> new EntityNotFoundException("Material not found: " + request.getMaterialId()));
+            Storage storage = storageRepository.findById(request.getStorageId())
+                    .orElseThrow(() -> new EntityNotFoundException("Storage not found: " + request.getStorageId()));
+
+            item.setQuantity(request.getQuantity());
+            item.setDeliveryDate(request.getDeliveryDate());
+            item.setMaterial(material);
+            item.setStorage(storage);
+        }
+
+    }
+
 }

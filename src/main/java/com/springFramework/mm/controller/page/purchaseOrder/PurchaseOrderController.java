@@ -45,6 +45,10 @@ public class PurchaseOrderController {
     public String showPurchaseOrders(Model model) {
         model.addAttribute("headers", purchaseOrderService.getAllHeaders());
         model.addAttribute("items", purchaseOrderService.getAllItems());
+
+        model.addAttribute("vendorCompanies", vendorCompanyRepository.findAllWithVendor());
+        model.addAttribute("materials", materialRepository.findAll());
+        model.addAttribute("storages", storageRepository.findAll());
         return "purchaseOrder/purchaseOrderList";
     }
 }

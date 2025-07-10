@@ -3,6 +3,42 @@
 <head>
     <title>구매 오더 전체 목록</title>
     <meta charset="UTF-8">
+    <script>
+        async function submitSelectedItems() {
+            const selectedRows = document.querySelectorAll("input[name='selectItem']:checked");
+
+            const dataList = Array.from(selectedRows).map(checkbox => {
+                const row = checkbox.closest("tr");
+                return {
+                    id: row.dataset.id,
+                    quantity: row.querySelector("input[name='quantity']").value,
+                    deliveryDate: row.querySelector("input[name='deliveryDate']").value,
+                    materialId: row.querySelector("select[name='materialId']").value,
+                    storageId: row.querySelector("select[name='storageId']").value
+                };
+            });
+
+            if (dataList.length === 0) {
+                alert("수정할 항목을 선택해주세요.");
+                return;
+            }
+
+            const response = await fetch('/api/v1/purchase-orders', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataList)
+            });
+
+            if (response.ok) {
+                alert("선택된 항목을 수정하였습니다.");
+                window.location.reload();
+            } else {
+                alert("수정 실패. 다시 시도해주세요.");
+            }
+        }
+    </script>
 </head>
 <body>
 <h1>구매 오더 헤더 목록</h1>
@@ -30,37 +66,41 @@
 
 <br/>
 <h2>구매 오더 항목 목록</h2>
+<button type="button" onclick="submitSelectedItems()">선택 수정하기</button>
 
 <table border="1">
     <thead>
     <tr>
+        <th>선택</th>
         <th>ID</th>
         <th>품목 번호</th>
         <th>수량</th>
         <th>납품 예정일</th>
         <th>헤더 ID</th>
-        <th>자재명</th>
-        <th>단위</th>
-        <th>단가</th>
-        <th>저장소명</th>
-        <th>시설명</th>
+        <th>자재</th>
+        <th>저장소</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="item : ${items}">
+    <tr th:each="item : ${items}" th:attr="data-id=${item.id}">
+        <td><input type="checkbox" name="selectItem"/></td>
         <td th:text="${item.id}"></td>
         <td th:text="${item.itemNo}"></td>
-        <td th:text="${item.quantity}"></td>
-        <td th:text="${item.deliveryDate}"></td>
+        <td><input type="number" name="quantity" th:value="${item.quantity}"/></td>
+        <td><input type="date" name="deliveryDate" th:value="${item.deliveryDate}"/></td>
         <td th:text="${item.purchaseOrderHeader.id}"></td>
-        <td th:text="${item.material.name}"></td>
-        <td th:text="${item.material.baseUnit}"></td>
-        <td th:text="${item.material.price}"></td>
-        <td th:text="${item.storage.name}"></td>
-        <td th:text="${item.storage.facility.name}"></td>
+        <td>
+            <select name="materialId">
+                <option th:each="m : ${materials}" th:value="${m.id}" th:text="${m.name}" th:selected="${m.id} == ${item.material.id}"></option>
+            </select>
+        </td>
+        <td>
+            <select name="storageId">
+                <option th:each="s : ${storages}" th:value="${s.id}" th:text="${s.name}" th:selected="${s.id} == ${item.storage.id}"></option>
+            </select>
+        </td>
     </tr>
     </tbody>
 </table>
-
 </body>
 </html>

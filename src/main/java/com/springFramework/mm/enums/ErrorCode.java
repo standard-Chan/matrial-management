@@ -15,6 +15,12 @@ public enum ErrorCode {
     NOT_FOUND_VENDOR(HttpStatus.NOT_FOUND, "해당 vendor를 찾을 수 없습니다."),
     NOT_FOUND_COMPANY(HttpStatus.NOT_FOUND, "해당 vendor company를 찾을 수 없습니다."),
     NOT_FOUND_PURCHASING(HttpStatus.NOT_FOUND, "해당 vendor purchasing을 찾을 수 없습니다."),
+    NOT_FOUND_PURCHASE_ORDER_ITEM(HttpStatus.NOT_FOUND, "해당 구매 오더 품목을 찾을 수 없습니다."),
+    NOT_FOUND_PURCHASE_ORDER_HEADER(HttpStatus.NOT_FOUND, "해당 구매 오더 헤더를 찾을 수 없습니다."),
+    NOT_FOUND_MATERIAL(HttpStatus.NOT_FOUND, "해당 자재를 찾을 수 없습니다."),
+    NOT_FOUND_FACILITY(HttpStatus.NOT_FOUND, "해당 Facility 를 찾을 수 없습니다."),
+    NOT_FOUND_STORAGE(HttpStatus.NOT_FOUND, "해당 Storage 를 찾을 수 없습니다."),
+
 
     // 409
     CONFLICT_RELATION_EXISTS(HttpStatus.CONFLICT, "연관관계가 존재하여 삭제할 수 없습니다."),
