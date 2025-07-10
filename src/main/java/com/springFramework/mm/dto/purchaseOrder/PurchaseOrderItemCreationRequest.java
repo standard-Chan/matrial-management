@@ -5,7 +5,7 @@ import com.springframework.mm.domain.Storage;
 import com.springframework.mm.domain.purchaseOrder.PurchaseOrderHeader;
 import com.springframework.mm.domain.purchaseOrder.PurchaseOrderItem;
 import com.springframework.mm.enums.ErrorCode;
-import com.springframework.mm.exception.vendorOrder.VendorOrderItemException;
+import com.springframework.mm.exception.purchaseOrder.PurchaseOrderItemException;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -36,6 +36,6 @@ public class PurchaseOrderItemCreationRequest {
 
     public void checkQuantity() {
         if (this.quantity < 1)
-            throw new VendorOrderItemException(ErrorCode.INVALID_QUANTITY);
+            throw new PurchaseOrderItemException(ErrorCode.INVALID_QUANTITY);
     }
 }
