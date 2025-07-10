@@ -2,6 +2,7 @@ package com.springframework.mm.domain.vendor;
 
 import com.springframework.mm.enums.AccountCode;
 import com.springframework.mm.enums.PaymentTermCode;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,7 +30,6 @@ public class VendorCompany {
     @JoinColumn(name = "vendor_id")
     private Vendor vendor; // 구매처 코드
 
-    @Column(unique = true)
     private String companyCode; // 회사 코드
 
     @Enumerated(EnumType.STRING) // enum String 변환

@@ -5,6 +5,7 @@ import com.springframework.mm.dto.purchaseOrder.PurchaseOrderHeaderCreationReque
 import com.springframework.mm.dto.purchaseOrder.PurchaseOrderItemCreationRequest;
 import com.springframework.mm.repository.MaterialRepository;
 import com.springframework.mm.repository.StorageRepository;
+import com.springframework.mm.repository.vendor.VendorCompanyRepository;
 import com.springframework.mm.repository.vendor.VendorRepository;
 import com.springframework.mm.service.PurchaseOrderService;
 import lombok.RequiredArgsConstructor;
@@ -18,17 +19,17 @@ import org.springframework.web.bind.annotation.*;
 /** 구매오더 헤더/아이템을 동시에 관리 */
 public class PurchaseOrderController {
 
-    private final VendorRepository vendorRepository;
     private final MaterialRepository materialRepository;
     private final StorageRepository storageRepository;
     private final PurchaseOrderService purchaseOrderService;
+    private final VendorCompanyRepository vendorCompanyRepository;
 
-    @GetMapping("/create")
+    @GetMapping("/new")
     public String createPurchaseOrderForm(Model model) {
         model.addAttribute("purchaseOrderHeader", new PurchaseOrderHeaderCreationRequest());
         model.addAttribute("purchaseOrderItem", new PurchaseOrderItemCreationRequest());
 
-        model.addAttribute("vendors", vendorRepository.findAll());
+        model.addAttribute("vendorCompanies", vendorCompanyRepository.findAllWithVendor());
         model.addAttribute("materials", materialRepository.findAll());
         model.addAttribute("storages", storageRepository.findAll());
 
@@ -38,6 +39,6 @@ public class PurchaseOrderController {
     @PostMapping()
     public String createPurchaseOrder(@ModelAttribute PurchaseOrderCreationRequest request) {
         purchaseOrderService.createPurchaseOrder(request);
-        return "redirect:/purchase-orders/create";
+        return "redirect:/purchase-orders/new";
     }
 }

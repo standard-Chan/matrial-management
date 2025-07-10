@@ -2,6 +2,7 @@ package com.springframework.mm.dto.purchaseOrder;
 
 import com.springframework.mm.domain.purchaseOrder.PurchaseOrderHeader;
 import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.VendorCompany;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -11,12 +12,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 /** 구매 오더 헤더 생성 요청 dto */
 public class PurchaseOrderHeaderCreationRequest {
-    private Long vendorId;
+    private Long vendorCompanyId;
     private LocalDate orderDate;
 
-    public PurchaseOrderHeader toEntity(Vendor vendor) {
+    public PurchaseOrderHeader toEntity(VendorCompany vendorCompany) {
         return PurchaseOrderHeader.builder()
-                .vendor(vendor)
+                .vendorCompany(vendorCompany)
                 .orderDate(orderDate)
                 .build();
     }

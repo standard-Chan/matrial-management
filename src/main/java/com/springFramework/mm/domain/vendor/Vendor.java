@@ -25,7 +25,7 @@ public class Vendor {
     @Convert(converter = VendorGroupCodeConverter.class)
     private VendorGroupCode vendorGroupCode; // 구매처 그룹
 
-    private String countryCode; // 구매처 그룹
+    private String countryCode; // 국가 코드
 
     private String address; // 주소
 

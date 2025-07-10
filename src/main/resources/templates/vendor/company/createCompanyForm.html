@@ -21,20 +21,20 @@
         <label>계정 코드:</label>
         <select th:field="*{accountCode}">
             <option value="">-- 선택 --</option>
-            <option value="2100001010">외상매입금_국내</option>
-            <option value="2100001020">외상매입금_수입</option>
-            <option value="2100001030">외상매입금_기타</option>
-            <option value="2100001040">지급어음</option>
-            <option value="2100002010">미지급금_국내</option>
-            <option value="2100002020">미지급금_외화</option>
-            <option value="2100002030">미지급금_법인카드</option>
-            <option value="2100003010">미지급비용_지급이자</option>
-            <option value="2100003020">미지급비용_급여</option>
-            <option value="2100003030">미지급비용_퇴직금</option>
-            <option value="2100003040">미지급비용_상여급</option>
-            <option value="2100003050">미지급비용_기타</option>
-            <option value="2100004010">미지급배당금</option>
-            <option value="2100005010">미지급법인세</option>
+            <option value="PAYABLE_DOMESTIC">외상매입금_국내</option>
+            <option value="PAYABLE_IMPORT">외상매입금_수입</option>
+            <option value="PAYABLE_OTHER">외상매입금_기타</option>
+            <option value="NOTE_PAYABLE">지급어음</option>
+            <option value="ACCRUED_DOMESTIC">미지급금_국내</option>
+            <option value="ACCRUED_FOREIGN">미지급금_외화</option>
+            <option value="ACCRUED_CORPORATE_CARD">미지급금_법인카드</option>
+            <option value="ACCRUED_INTEREST">미지급비용_지급이자</option>
+            <option value="ACCRUED_SALARY">미지급비용_급여</option>
+            <option value="ACCRUED_RETIRE">미지급비용_퇴직금</option>
+            <option value="ACCRUED_BONUS">미지급비용_상여급</option>
+            <option value="ACCRUED_ETC">미지급비용_기타</option>
+            <option value="ACCRUED_DIVIDEND">미지급배당금</option>
+            <option value="ACCRUED_CORPORATE_TAX">미지급법인세</option>
         </select>
     </div>
     <div>

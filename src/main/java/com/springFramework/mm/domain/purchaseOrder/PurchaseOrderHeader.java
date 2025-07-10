@@ -1,6 +1,7 @@
 package com.springframework.mm.domain.purchaseOrder;
 
 import com.springframework.mm.domain.vendor.Vendor;
+import com.springframework.mm.domain.vendor.VendorCompany;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,5 +28,5 @@ public class PurchaseOrderHeader {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vendor_id")
-    private Vendor vendor;
+    private VendorCompany vendorCompany;
 }
