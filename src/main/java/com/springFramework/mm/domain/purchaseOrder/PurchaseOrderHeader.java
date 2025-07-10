@@ -4,6 +4,7 @@ import com.springframework.mm.domain.vendor.Vendor;
 import com.springframework.mm.domain.vendor.VendorCompany;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
@@ -22,7 +23,7 @@ public class PurchaseOrderHeader {
 
     private LocalDate orderDate; // 주문 일자
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt; // 구매 오더 생성 시각
 

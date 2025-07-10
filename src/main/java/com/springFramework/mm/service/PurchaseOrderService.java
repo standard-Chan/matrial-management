@@ -67,4 +67,8 @@ public class PurchaseOrderService {
 
         return purchaseOrderItemRepository.save(request.toEntity(purchaseOrderHeader, material, storage));
     }
+
+    public List<PurchaseOrderHeader> getAllHeaders() {
+        return purchaseOrderHeaderRepository.findAllWithCompanyAndVendor();
+    }
 }

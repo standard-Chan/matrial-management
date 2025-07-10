@@ -6,7 +6,6 @@ import com.springframework.mm.dto.purchaseOrder.PurchaseOrderItemCreationRequest
 import com.springframework.mm.repository.MaterialRepository;
 import com.springframework.mm.repository.StorageRepository;
 import com.springframework.mm.repository.vendor.VendorCompanyRepository;
-import com.springframework.mm.repository.vendor.VendorRepository;
 import com.springframework.mm.service.PurchaseOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -40,5 +39,11 @@ public class PurchaseOrderController {
     public String createPurchaseOrder(@ModelAttribute PurchaseOrderCreationRequest request) {
         purchaseOrderService.createPurchaseOrder(request);
         return "redirect:/purchase-orders/new";
+    }
+
+    @GetMapping
+    public String showPurchaseOrders(Model model) {
+        model.addAttribute("headers", purchaseOrderService.getAllHeaders());
+        return "purchaseOrder/purchaseOrderList";
     }
 }
