@@ -15,7 +15,10 @@ import java.util.Optional;
 public interface MaterialRepository extends JpaRepository<Material, Long> {
     Optional<Material> getMaterialById(Long id);
 
-    @Lock(LockModeType.OPTIMISTIC)
+//    @Lock(LockModeType.OPTIMISTIC)
     @Query("SELECT m FROM Material m WHERE m.id = :id")
     Optional<Material> findByIdWithOptimisticLock(@Param("id")Long id);
+
+    @Lock(LockModeType.OPTIMISTIC)
+    Optional<Material> findById(Long id);
 }

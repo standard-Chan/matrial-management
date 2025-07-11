@@ -24,6 +24,16 @@ public interface PurchaseOrderItemRepository extends JpaRepository<PurchaseOrder
     """)
     List<PurchaseOrderItem> findAllWithJoins();
 
+    @Query("""
+        SELECT i FROM PurchaseOrderItem i
+        JOIN FETCH i.purchaseOrderHeader
+        JOIN FETCH i.material
+        JOIN FETCH i.storage s
+        JOIN FETCH s.facility
+            WHERE i.id = :id
+    """)
+    PurchaseOrderItem findByIdWithAll(@Param("id")Long id);
+
     @Lock(LockModeType.OPTIMISTIC)
     @Query("SELECT p FROM PurchaseOrderItem p WHERE p.id = :id")
     Optional<PurchaseOrderItem> findByIdWithOptimisticLock(@Param("id")Long id);

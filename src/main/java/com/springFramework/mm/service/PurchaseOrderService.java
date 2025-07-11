@@ -21,12 +21,12 @@ import com.springframework.mm.repository.purchasingOrder.PurchaseOrderHeaderRepo
 import com.springframework.mm.repository.purchasingOrder.PurchaseOrderItemRepository;
 import com.springframework.mm.repository.vendor.VendorCompanyRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.OptimisticLockException;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -117,13 +117,14 @@ public class PurchaseOrderService {
         }).toList();
     }
 
+
     @Transactional
-    /** 비관적 락을 사용하여 데이터 가져오기 & 업데이터 */
+    /** 낙관적 락을 사용하여 데이터 가져오기 & 업데이터 */
     public PurchaseOrderItem updatePurchaseOrderItem(PurchaseOrderItemUpdateRequest request) {
-        PurchaseOrderItem item = itemRepository.findByIdWithOptimisticLock(request.getId())
-                .orElseThrow(() -> new PurchaseOrderItemException(ErrorCode.NOT_FOUND_PURCHASE_ORDER_ITEM));
         Material material = materialRepository.findByIdWithOptimisticLock(request.getMaterialId())
                 .orElseThrow(() -> new MaterialException(ErrorCode.NOT_FOUND_MATERIAL));
+        PurchaseOrderItem item = itemRepository.findByIdWithOptimisticLock(request.getId())
+                .orElseThrow(() -> new PurchaseOrderItemException(ErrorCode.NOT_FOUND_PURCHASE_ORDER_ITEM));
         Storage storage = storageRepository.findByIdWithOptimisticLock(request.getStorageId())
                 .orElseThrow(() -> new StorageException(ErrorCode.NOT_FOUND_STORAGE));
 

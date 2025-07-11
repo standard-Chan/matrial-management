@@ -11,6 +11,7 @@ import com.springframework.mm.exception.vendor.VendorException;
 import com.springframework.mm.repository.vendor.VendorPurchasingRepository;
 import com.springframework.mm.repository.vendor.VendorRepository;
 import com.springframework.mm.service.vendor.VendorPurchasingService;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest(classes = MaterialManagerApplication.class)
+@Transactional
 public class VendorPurchasingOptimisticLockConcurrencyTest {
 
     @Autowired
