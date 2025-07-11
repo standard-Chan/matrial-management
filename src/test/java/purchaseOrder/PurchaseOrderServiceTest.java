@@ -60,7 +60,7 @@ class PurchaseOrderServiceTest {
         VendorCompany company = vendorCompanyRepository.save(createCompany(vendor.getId()).toEntity(vendor));
 
         // Material 생성
-        Material material = materialRepository.save(createMaterial("테스트자재", QuantityUnit.EA, 2000L));
+        Material material = materialRepository.save(createMaterial("테스트자재", QuantityUnit.EA, 2000));
 
         // Storage + Facility 생성
         Facility facility = facilityRepository.save(Facility.builder().name("시설A").address("서울") .build());

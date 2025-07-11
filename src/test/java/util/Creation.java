@@ -46,7 +46,7 @@ public class Creation {
                 .build();
     }
 
-    public static Material createMaterial(String name, QuantityUnit unit, Long price) {
+    public static Material createMaterial(String name, QuantityUnit unit, int price) {
         return Material.builder()
                 .name(name)
                 .baseUnit(unit)
