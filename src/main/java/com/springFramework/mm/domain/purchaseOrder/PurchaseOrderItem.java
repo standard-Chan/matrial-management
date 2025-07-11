@@ -15,10 +15,23 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(     // 제약조건 생성
+        name = "purchase_order_item",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_purchase_order_header_item_no",
+                        columnNames = {"purchase_order_header", "item_no"}
+                )
+        }
+)
 public class PurchaseOrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "purchaseOrderHeader_id")
+    private PurchaseOrderHeader purchaseOrderHeader;
 
     private Long itemNo;
 
@@ -33,10 +46,6 @@ public class PurchaseOrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storage_id")
     private Storage storage;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "purchaseOrderHeader_id")
-    private PurchaseOrderHeader purchaseOrderHeader;
 
     @Version
     private Long version;

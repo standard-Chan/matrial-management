@@ -12,7 +12,7 @@ import lombok.Setter;
 public class MaterialCreationRequest {
     private String name;
     private QuantityUnit baseUnit;
-    private Long price;
+    private int price;
 
     public Material toEntity() {
         return Material.builder()

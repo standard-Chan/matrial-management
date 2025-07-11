@@ -20,7 +20,7 @@ public class Material {
     @Enumerated(EnumType.STRING) // enum String 변환
     private QuantityUnit baseUnit; // 단위
 
-    private Long price; // 단가
+    private int price; // 단가
 
     @Version
     private Long version;
